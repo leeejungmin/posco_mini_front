@@ -16,14 +16,14 @@ const AuthRouter = () => {
     };
     const toHome = () => {
         const from =
-            location.pathname === "/login" || location.pathname === "/join" //
+            location.pathname === "/login" || location.pathname === "/register" //
                 ? location.pathname
                 : "/login";
         navigate(from);
     };
     const toGo = () => {
         const from = location.pathname || "/";
-        navigate(from === "/login" || from === "/join" ? "/" : from);
+        navigate(from === "/login" || from === "/register" ? "/" : from);
     };
     return <></>;
 };

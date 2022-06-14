@@ -44,6 +44,7 @@ export const logout = createAsyncThunk(LOGOUT, async (payload, thunkAPI) => {
     return isLogout;
 });
 
+//
 export const usersSlice = createSlice({
     name: "users",
     initialState,
@@ -59,6 +60,7 @@ export const usersSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, { payload }) => {
                 if (payload.isLogin) {
+                    console.log(payload);
                     localStorage.setItem("id", payload.user.id);
                     return {
                         ...state,
@@ -70,9 +72,9 @@ export const usersSlice = createSlice({
                     return { ...state, isLogin: false };
                 }
             })
-            // .addCase(insertUser.fulfilled, (state, { payload }) => {
-            //     return { ...state, users: payload };
-            // })
+            .addCase(insertUser.fulfilled, (state, { payload }) => {
+                return { ...state, users: payload };
+            })
             .addCase(logout.fulfilled, (state, { payload }) => {
                 localStorage.removeItem("id");
                 return { ...state, isLogin: false, me: {}, myId: "" };

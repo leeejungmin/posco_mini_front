@@ -19,7 +19,7 @@ const Register = () => {
         password: "",
         name: "",
         repassword: "",
-        Phone_N: "",
+        phoneNum: "",
     });
     const onChangeHandler = (e) => {
         const { name, value } = e.target;
@@ -48,7 +48,7 @@ const Register = () => {
             // name is null
             openAlert("이름를 입력해주세요");
             return;
-        }else if (user.Phone_N === "") {
+        }else if (user.phoneNum === "") {
             // name is null
             openAlert("휴대폰번호를 입력해주세요");
             return;
@@ -102,7 +102,7 @@ const Register = () => {
                                 <div className="d-flex flex-row align-items-center mb-4">
 
                                     <div className="form-outline flex-fill mb-0">
-                                        <input type="text" id="form3Example3c" className="form-control" name="Phone_N" onChange={(e) => onChangeHandler(e)} />
+                                        <input type="text" id="form3Example3c" className="form-control" name="phoneNum" onChange={(e) => onChangeHandler(e)} />
                                         <label className="form-label"  >휴대전화</label>
                                     </div>
                                 </div>
@@ -123,11 +123,14 @@ const Register = () => {
                                     </div>
                                 </div>
 
+                                <button
+                                        type={"submit"}
+                                        data-mdb-ripple="true"
+                                        data-mdb-ripple-color="light"
+                                        class="inline-block px-6 py-2.5 bg-[#FFBC05] hover:bg-[#fcaf0a] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                                    >등록</button>
 
-
-                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                    <button type={"submit"} className="btn btn-primary btn-lg">등록</button>
-                                </div>
+                               
 
                             </Form>
 
