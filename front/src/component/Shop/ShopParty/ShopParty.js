@@ -1,22 +1,31 @@
 
 import React, { useState } from "react";
 import DateToday from "./DateToday";
+import { useNavigate } from "react-router-dom";
 
 
 const ShopParty = () => {
 
+    const navigate = useNavigate();
     const [shopState, setShopState] = useState("");
-
+    const onMovePrev =() =>{
+        navigate('/list')
+    }
 
     return (
         <>
+
             <div></div>
             <br></br>
             <br></br>
+
+
             <div className="flex justify-center ">
                 <DateToday />
+
             </div>
             <div className="2xl:container content-center 2xl:mx-auto">
+
                 <div className="flex justify-center ">
 
                     <br></br>
@@ -131,6 +140,7 @@ const ShopParty = () => {
 
             {/* 콤보박스 */}
             <div className="flex justify-center ">
+
                 <div className="mb-3 xl:w-96">
                     <select className="form-select form-select-sm
     appearance-none
@@ -148,25 +158,26 @@ const ShopParty = () => {
     ease-in-out
     m-0
     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label=".form-select-sm example"
-    onChange={(e)=>{
-        const selectedShop=e.target.value;
-        setShopState(selectedShop);
-    }}
-    defaultValue={"0"}
-    >
-                        <option  value={"0"}>식당 선택하기</option>
+                        onChange={(e) => {
+                            const selectedShop = e.target.value;
+                            setShopState(selectedShop);
+                        }}
+                        defaultValue={"0"}
+                    >
+                        <option value={"0"}>식당 선택하기</option>
                         <option value="1">숯불애</option>
                         <option value="2">오늘통닭</option>
                         <option value="3">초선과 여포</option>
                         <option value="4">하나우동</option>
                         <option value="5">한돈애</option>
                     </select> {shopState}
-                    
+
                 </div>
+
                 {/* 콤보박스 끝 */}
-             
+
                 <p>　　　</p>
-              
+
                 {/* 버튼 시작 */}
                 {/* <button 
                     type="button"
@@ -190,13 +201,24 @@ const ShopParty = () => {
                 {/* 토글버튼 끝 */}
 
             </div>
+
+            <br></br>
+
             <br></br>
             <br></br>
             <br></br>
-            
+            <br></br>
+
             {/* 리스트 박스 끝 */}
 
-
+            <div className="flex justify-center">
+                <button onClick={onMovePrev}
+                    type="button"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="inline-block px-2.5 py-1 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                >뒤로가기</button>
+            </div>
 
         </>
 
