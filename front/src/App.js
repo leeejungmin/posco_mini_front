@@ -3,7 +3,9 @@ import Register from './component/Register/Register';
 import Login from './component/Login/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './component/Layout/Layout';
-import ShopList from './component/Shop/ShopList';
+import ShopList from './component/Shop/List/ShopList';
+
+
 
 const App = () => {
   return (
