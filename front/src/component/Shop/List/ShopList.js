@@ -9,8 +9,8 @@ const ShopList =()=>{
 	const getShoplist =()=>{
 		dispatch(selectShoplist());
 	};
-	console.log('shopList >> ')
-	console.log(shopList.shops);
+	//console.log('shopList >> ')
+	//console.log(shopList.shops);
 	useEffect(()=>{
 		getShoplist();
 	},[]);
