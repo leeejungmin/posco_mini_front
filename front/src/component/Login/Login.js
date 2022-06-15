@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Form } from "reactstrap";
 // import { Button, Form, } from "reactstrap";
 import { login } from '../../Store/user'
 // import "./Login.css";
@@ -65,8 +66,9 @@ const Login = () => {
                                 <br></br><br></br><br></br><br></br>
                                 <h3 className="pt-4 text-2xl text font-sans-kr text-center">오늘은 뭐 먹지!?</h3>
                                 <div className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                                    <Form onSubmit={onSubmit}>
                                     <div className="mb-4">
-                                        <div className="font-sans-kr block mb-2 text-sm font-bold text-gray-700" for="username">
+                                        <div className="font-sans-kr block mb-2 text-sm font-bold text-gray-700" >
                                             아이디
                                         </div>
                                         <input
@@ -74,9 +76,10 @@ const Login = () => {
                                             type="text" placeholder="Username" name="userId" onChange={(e) => onChangeHandler(e)}
 
                                         />
+                                        
                                     </div>
                                     <div className="mb-4">
-                                        <div className="font-sans-kr block mb-2 text-sm font-bold text-gray-700" for="password">
+                                        <div className="font-sans-kr block mb-2 text-sm font-bold text-gray-700">
                                             비밀번호
                                         </div>
                                         <input
@@ -84,8 +87,16 @@ const Login = () => {
                                             type="password" placeholder="비밀번호를 입력해주세요" name="password" onChange={(e) => onChangeHandler(e)}
 
                                         />
+                                        <p></p>
+                                        <button 
+                                            type="button"
+                                            data-mdb-ripple="true"
+                                            data-mdb-ripple-color="light"
+                                            className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                                        >로그인</button>
 
                                     </div>
+                                    </Form>
 
                                     <hr className="mb-6 border-t" />
                                    <p></p>
