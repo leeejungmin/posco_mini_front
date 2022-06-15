@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 
 
 const Header=()=>{
+    
+    const navigate = useNavigate();
+    const MoveHome = () => {
+        navigate('/login')
+    }
     return (
     <>
    
@@ -8,7 +14,7 @@ const Header=()=>{
             <div className="bg-[#FFBC05] dark:bg-gray-800  rounded shadow-lg py-1 px-7">
                
                     <div className="flex items-center text-center place-content-center space-x-3   ">
-                        <img className="cursor-pointer dark:bg-white w-20 rounded-full " src="/img/logo.jpg" alt="circle" />                       
+                        <img onClick={MoveHome} className="cursor-pointer dark:bg-white w-20 rounded-full " src="/img/logo.jpg" alt="circle" />                       
 
                         <h2 className="font-sans-kr text-2xl leading-6 text-gray-800 dark:text-white ">같이 먹어요</h2>
                     </div> 
