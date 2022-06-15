@@ -14,12 +14,12 @@ const ShopParty = () => {
     const dispatch = useDispatch();
 
     // shopid db에 넣기
-    const onChangeHandler = async(e) => {
-        const { name, value } = e.target;
-        setShop({ ...shop, [name]: value });
+    // const onChangeHandler = async(e) => {
+    //     const { name, value } = e.target;
+    //     setShop({ ...shop, [name]: value });
 
-        await dispatch(push(shop));
-    };
+    //     await dispatch(push(shop));
+    // };
 
    
             
@@ -211,8 +211,8 @@ const ShopParty = () => {
                     </div>
                 </div> */}
                 {/* 토글버튼 끝 */}
-                <span hidden value={shopState} name="shopId"onChange={(e) => {onChangeHandler(e)                          
-                        }}></span>
+                {/* <span hidden value={shopState} name="shopId"onChange={(e) => {onChangeHandler(e)                          
+                        }}></span> */}
             </div>
             
             <br></br>
