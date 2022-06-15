@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Form,  } from "reactstrap";
+import { loginRequestAction } from "../../Sagas/userApi";
 import { login } from '../../Store/user'
 import "./Login.css";
 
@@ -15,6 +16,17 @@ const Login = () => {
         userId: "",
         password: "",
     });
+    const state = useSelector((state) => state.users.isLogin);
+    console.log("This is seletor" + state);
+    useEffect(() => {
+        if (state) {
+          navigate("/");
+        } else {
+          setIsFail(true);
+          setTimeout(() => closeAlert(), 3000);
+        }
+      }, [state]);
+
     const onChangeHandler = (e) => {
         
         const { name, value } = e.target;
@@ -24,14 +36,7 @@ const Login = () => {
     const navigate = useNavigate();
     const onSubmit = async (e) => {
         e.preventDefault();
-        const { isLogin } = await dispatch(login(user)).unwrap();
-
-        if (isLogin) {
-            navigate("/");
-        } else {
-            setIsFail(true);
-            setTimeout(() => closeAlert(), 3000);
-        }
+        dispatch(loginRequestAction(user));
     };
 
     const closeAlert = () => {

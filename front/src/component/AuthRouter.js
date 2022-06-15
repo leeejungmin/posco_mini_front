@@ -11,7 +11,8 @@ const AuthRouter = () => {
         loginCheckFunc();
     }, []);
     const loginCheckFunc = async () => {
-        const isLogin = await dispatch(loginCheck()).unwrap();
+        const isLogin = await dispatch(loginCheck()).unwrap();// saga로 구현할것
+        console.log("IsLogin is here.................."+isLogin)
         isLogin ? toGo() : toHome();
     };
     const toHome = () => {

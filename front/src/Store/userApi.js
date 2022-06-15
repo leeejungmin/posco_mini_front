@@ -14,7 +14,7 @@ export const postUser = async (users, user) => {
 
 export const loginApi = async (users, user) => {
     const { data } = await customAxios("post", "/user/login", user);
-    console.log(data);
+    console.log(data.name);
     //return { isLogin: data.isTrue ? true : false, user: data.user, isTrue: data.isTrue };
     return { isLogin: data.token ? true : false, user: data.user, token: data.token };
 };

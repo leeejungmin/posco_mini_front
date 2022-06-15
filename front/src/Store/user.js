@@ -1,4 +1,3 @@
-import {Data} from "../Data/data";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {getUserById, loginApi, logoutApi, postUser} from "./userApi";
 
@@ -9,13 +8,14 @@ const INSERT_USER = "INSERT_USER";
 const LOGIN_CHECK = "LOGIN_CHECK";
 
 const initialState = {
-    users: Data,
+    users: "",
     myId: localStorage.getItem("id"),
     isLogin: localStorage.getItem("id") === undefined ? true : false,
     me: {},
 };
 
 export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI) => {
+    console.log("This is loginCheck---"+localStorage.getItem("id"));
     const { users, myId } = thunkAPI.getState().users;
     if (myId) {
         const me = await getUserById(users, Number(myId));
@@ -28,6 +28,7 @@ export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI
 });
 
 export const login = createAsyncThunk(LOGIN, async (user, thunkAPI) => {
+    console.log(user);
     const { users } = thunkAPI.getState().users;
     const isLogin = await loginApi(users, user);
     return isLogin;
@@ -36,8 +37,8 @@ export const login = createAsyncThunk(LOGIN, async (user, thunkAPI) => {
 export const insertUser = createAsyncThunk(INSERT_USER, async (user, thunkAPI) => {
     const { users } = thunkAPI.getState().users;
     await postUser(users, user);
-    // return newUser;
-});
+  });
+  
 export const logout = createAsyncThunk(LOGOUT, async (payload, thunkAPI) => {
     const { myId } = thunkAPI.getState().users;
     const isLogout = await logoutApi(myId);
@@ -60,8 +61,9 @@ export const usersSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, { payload }) => {
                 if (payload.isLogin) {
-                    console.log(payload);
+                    console.log("this is payload after isLogin" + payload);
                     localStorage.setItem("id", payload.user.id);
+                    localStorage.setItem("token", payload.user.token);
                     return {
                         ...state,
                         isLogin: payload.login, //
