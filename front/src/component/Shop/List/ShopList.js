@@ -9,6 +9,7 @@ const ShopList =()=>{
 	const getShoplist =()=>{
 		dispatch(selectShoplist());
 	};
+	//수정된 ShopList
 	//console.log('shopList >> ')
 	//console.log(shopList.shops);
 	useEffect(()=>{
