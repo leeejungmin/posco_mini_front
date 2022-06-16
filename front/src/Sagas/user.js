@@ -3,7 +3,7 @@ import {
     LOG_IN_REQUEST,
     LOG_IN_SUCCESS,
   } from "./userApi";
-  import { delay, put, fork, all, takeLatest, call } from "redux-saga/effects";
+  import { delay, put, fork, all, takeLatest, takeEvery, call } from "redux-saga/effects";
   import {customAxios} from "../Http/customAxios";
   
   // yield all 보고있다가 실행시키겠다

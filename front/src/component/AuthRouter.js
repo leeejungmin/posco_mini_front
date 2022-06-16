@@ -9,12 +9,11 @@ const AuthRouter = () => {
     const location = useLocation();
     useEffect(() => {
         loginCheckFunc();
-               
     },[]);
     const loginCheckFunc = async () => {
         const tokenc =  localStorage.getItem("token");
         const isLogin = tokenc? true : false;
-        console.log("reducer / logincheck..............."+isLogin);
+        //console.log("reducer / logincheck..............."+isLogin);
         isLogin ? toGo() : toHome();
     };
     const toHome = () => {

@@ -11,7 +11,7 @@ const ShopParty = () => {
     const onMovePrev =() =>{
         navigate('/list')
     }
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     // shopid db에 넣기
     // const onChangeHandler = async(e) => {

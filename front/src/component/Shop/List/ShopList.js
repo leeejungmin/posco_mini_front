@@ -9,7 +9,6 @@ const ShopList =()=>{
 	const getShoplist =()=>{
 		dispatch(selectShoplist());
 	};
-
 	useEffect(()=>{
 		getShoplist();
 	},[]);
