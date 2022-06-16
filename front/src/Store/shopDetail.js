@@ -7,13 +7,15 @@ const initialState = {
         details: [],
         loading: false,
         message: '',
+        shopId: '',
     },
 };
 
 const SELECT_SHOP_DETAIL = 'SELECT_SHOP_DETAIL';
 
 export const selectShopDetail = createAsyncThunk(SELECT_SHOP_DETAIL, async (payload, thunkAPI) => {
-    const shopDetail = await getShopDetail();
+    console.log('payload.id:', payload);
+    const shopDetail = await getShopDetail(payload.id);
     console.log(shopDetail);
     return shopDetail;
 });
@@ -24,6 +26,7 @@ export const detailSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(selectShopDetail.fulfilled, (state, { payload }) => {
+            console.log(state);
             const newShopDetail = { ...state.shopDetail };
             newShopDetail.loading = false;
             newShopDetail.shops = payload;

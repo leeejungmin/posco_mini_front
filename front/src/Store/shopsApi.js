@@ -9,9 +9,9 @@ export const getShopList = async () => {
         throw error;
     }
 };
-export const getShopDetail = async (id) => {
+export const getShopDetail = async (shopId) => {
     try {
-        const response = await customAxiosList('get', `/shop/detail/${id}`, null);
+        const response = await customAxiosList('get', `/shop/detail/${shopId}`, null);
         //console.log(response);
         return response;
     } catch (error) {
