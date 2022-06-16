@@ -1,4 +1,4 @@
-.LoginPage {dd
+.LoginPage {
     top: 50%;
     left: 50%;
     position: fixed;
@@ -7,8 +7,8 @@
     flex-direction: column;
     row-gap: 3em;
 }
-1em=16px
-.Box {dd
+/* 1em=16px */
+.Box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,10 +17,10 @@
     border: 1px solid gray;
     padding: 2em;
 }
-.imgBox {dd 
+.imgBox { 
     padding: 2em;
 }
-.LoginBox { dd
+.LoginBox { 
     width: 80%;
     display: flex;
     flex-direction: column;

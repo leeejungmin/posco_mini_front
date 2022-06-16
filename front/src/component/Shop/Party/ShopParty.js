@@ -1,8 +1,8 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DateToday from "./DateToday";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import axios from 'axios';
 
 const ShopParty = () => {
 
@@ -13,14 +13,27 @@ const ShopParty = () => {
     }
     const dispatch = useDispatch();
 
+    // party 데이터를 넘겨보자
+    const [partys, setPartys] = useState([]);
+
+    // useEffect(()=>{
+    //     axios({
+    //         method: 'POST',
+    //         url: ''
+    //     }).then(Response => setPartys(response.data)) // 데이터 불러오기
+    // })
+
     // shopid db에 넣기
     // const onChangeHandler = async(e) => {
     //     const { name, value } = e.target;
     //     setShop({ ...shop, [name]: value });
-
-    //     await dispatch(push(shop));
+   await dispatch(push(shop));
     // };
+    
+    useEffect(()=>{
+        axios.post('/전송할 주소')
 
+    })
 
 
 
@@ -84,21 +97,21 @@ const ShopParty = () => {
                                                 {shopState === '2' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                훈이
+                                            {shopState === '1' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-center border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-
+                                            {shopState === '4' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-
+                                            {shopState === '3' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-
+                                            {shopState === '5' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm  whitespace-nowrap p-4 text-center text-blueGray-700 border border-solid border-blueGray-100">
-                                                철수
+                                                훈이
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap text-center p-4 border border-solid border-blueGray-100">
 
@@ -174,7 +187,7 @@ const ShopParty = () => {
 
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
 
@@ -213,7 +226,6 @@ const ShopParty = () => {
                             console.log(e.target.value);
                         }
                     } class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top  bg-no-repeat bg-contain before:bg-blue-500 after:bg-[#FFBC05] focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="flexSwitchCheckDefault"></input>
-
                     </div>
                 </div> */}
                 {/* 토글버튼 끝 */}
@@ -223,7 +235,7 @@ const ShopParty = () => {
 
             <br></br>
 
-    
+
 
 
             {/* 리스트 박스 끝 */}
@@ -236,7 +248,6 @@ const ShopParty = () => {
                     className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
                 >뒤로가기</button>
             </div>
-
         </>
 
     );

@@ -4,23 +4,20 @@ import { selectShoplist } from "../../../Store/shopslist";
 import Shops from "./Shops";
 
 const ShopList =()=>{
-	const shopList = useSelector((state)=>state.shops.shopList);
-	const dispatch = useDispatch();
-	const getShoplist =()=>{
-		dispatch(selectShoplist());
-	};
-	//수정된 ShopList
-	//console.log('shopList >> ')
-	//console.log(shopList.shops);
-	useEffect(()=>{
-		getShoplist();
-	},[]);
+   const shopList = useSelector((state)=>state.shops.shopList);
+   const dispatch = useDispatch();
+   const getShoplist =()=>{
+      dispatch(selectShoplist());
+   };
+   useEffect(()=>{
+      getShoplist();
+   },[]);
 
 
     return(
         <>
-			<Shops shops={shopList.shops} shopState={shopList}></Shops>
-										
+         <Shops shops={shopList.shops} shopState={shopList}></Shops>
+                              
         </>
 
     );

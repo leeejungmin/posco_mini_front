@@ -12,7 +12,7 @@ const AuthRouter = () => {
     }, []);
     const loginCheckFunc = async () => {
         const isLogin = await dispatch(loginCheck()).unwrap();
-        isLogin ? toGo() : toHome();
+        isLogin ? toGo() : toGo();
     };
     const toHome = () => {
         const from =
