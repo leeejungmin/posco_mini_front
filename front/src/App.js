@@ -7,6 +7,7 @@ import ShopList from './component/Shop/List/ShopList';
 import ShopParty from './component/Shop/Party/ShopParty';
 import Mypage from './component/Mypage/Mypage';
 import ReviewReg from './component/ReviewReg/ReviewReg';
+import ShopDetail from './component/Shop/detail/ShopDetail';
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout></Layout>}>
                     <Route index element={<ShopList></ShopList>}></Route>
+                    <Route path="detail/:id" element={<ShopDetail></ShopDetail>}></Route>
                     <Route path="login" element={<Login></Login>}></Route>
                     <Route path="register" element={<Register></Register>}></Route>
                     <Route path="list" element={<ShopList></ShopList>}></Route>
