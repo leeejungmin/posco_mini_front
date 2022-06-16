@@ -36,8 +36,10 @@ const Login = () => {
         navigate('/register')
     }
     const onSubmit = async (e) => {
+        console.log("onsubmit .............................");
         e.preventDefault();
         dispatch(login(user));
+        navigate('/')
     };
 
     const closeAlert = () => {
@@ -46,7 +48,6 @@ const Login = () => {
 
     return (
         <>
-
 
             <br></br>
             <br></br>
@@ -74,7 +75,6 @@ const Login = () => {
                                             <input
                                                 className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                 type="text" placeholder="Username" name="userId" onChange={(e) => onChangeHandler(e)}
-
                                             />
 
                                         </div>
@@ -89,7 +89,6 @@ const Login = () => {
                                             />
                                             <p></p>
                                             <button
-                                                type="button"
                                                 data-mdb-ripple="true"
                                                 data-mdb-ripple-color="light"
                                                 className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"

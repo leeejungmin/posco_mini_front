@@ -1,9 +1,9 @@
-import { customAxios } from "../Http/customAxios";
+import { customAxiosList } from "../Http/customAxios";
 
 
 export const getShopList = async () =>{
     try{
-        const response = await customAxios("get","/shop/",null);
+        const response = await customAxiosList("get","/shop/",null);
         //console.log(response);
         return response;
     } catch(error){
@@ -13,7 +13,7 @@ export const getShopList = async () =>{
 };
 export const getShopDetail = async () =>{
     try{
-        const response = await customAxios("get","/shop/detail",null);
+        const response = await customAxiosList("get","/shop/detail",null);
         //console.log(response);
         return response;
     } catch(error){

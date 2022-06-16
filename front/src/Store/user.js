@@ -28,6 +28,7 @@ export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI
 });
 
 export const login = createAsyncThunk(LOGIN, async (user, thunkAPI) => {
+    console.log("login reducer......................");
     console.log(user);
     const { users } = thunkAPI.getState().users;
     const isLogin = await loginApi(users, user);
@@ -63,7 +64,7 @@ export const usersSlice = createSlice({
                 if (payload.isLogin) {
                     console.log("this is payload after isLogin" + payload);
                     localStorage.setItem("id", payload.user.id);
-                    localStorage.setItem("token", payload.user.token);
+                    
                     return {
                         ...state,
                         isLogin: payload.login, //

@@ -8,16 +8,19 @@ const ShopList =()=>{
 	const dispatch = useDispatch();
 	const getShoplist =()=>{
 		dispatch(selectShoplist());
+		console.log(shopList.shops);
 	};
+	console.log(shopList);
+	
 	useEffect(()=>{
 		getShoplist();
+		
 	},[]);
 
 
     return(
         <>
-			<Shops shops={shopList.shops} shopState={shopList}></Shops>
-										
+			<Shops shops={shopList.shops} shopState={shopList}></Shops>								
         </>
 
     );
