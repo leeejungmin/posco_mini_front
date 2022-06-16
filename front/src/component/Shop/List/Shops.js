@@ -7,9 +7,11 @@ const Shops =({shops,shopState})=>{
 	const onMoveNext =() =>{
         navigate('/party')
     }
-	const onMoveDetail =() =>{
+	const onMoveDetail =(valueid, e) =>{
+		//const valueid = e.target.name;
+		console.log("valueid ........."+ valueid);
 		//리스트 하나 누르면 axios로 shop/detail 부르고 페이지 넘어가기
-        navigate('/detail')
+        navigate(`/detail/${valueid}`);
     }
     return(
         <>
@@ -27,27 +29,27 @@ const Shops =({shops,shopState})=>{
 									<Spinner>Loading...</Spinner>
 									):(
 										
-										shops?.map((value , index)=>(
+										shops?.map((v , index)=>(
 											
-											<li className=" flex flex-row mb-2" key={index} onClick={onMoveDetail}>
+											<li className=" flex flex-row mb-2" key={index} name={v}  onClick={(e) => onMoveDetail(v.id, e)}>
 												<div
 													className="h-40 select-none rounded-md flex flex-1 items-center p-4 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 mt-3 border-mainYellow hover:shadow-2xl"
 													>
 													<div className="flex-1 pl-1 mr-16">
 														<div className="font-sans-kr text-1xl font-medium " >
 															
-															이름: {value.name}
+															이름: {v.name}
 															<br></br>
 
-															평점: {value.grade}
+															평점: {v.grade}
 															<br></br>
 
-															위치:{value.location}
+															위치:{v.location}
 															
 														</div>
 													</div>
 													<div className="w-32 h-28 mb-2 border-gray-400 flex flex-row mb-8" >
-														<img className="" src={`${IMG_PATH}${value.image}`} alt="myImg">
+														<img className="" src={`${IMG_PATH}${v.image}`} alt="myImg">
 
 														</img>
 													
