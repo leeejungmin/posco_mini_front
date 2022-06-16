@@ -7,6 +7,9 @@ const Header=()=>{
     const MoveHome = () => {
         navigate('/login')
     }
+    const MoveMypage = () => {
+        navigate('/mypage')
+    }
     return (
     <>
    
@@ -18,6 +21,12 @@ const Header=()=>{
 
                         <h2 className="font-sans-kr text-2xl leading-6 text-gray-800 dark:text-white ">같이 먹어요</h2>
                     </div> 
+
+                    <div>
+                        <button onClick={MoveMypage} >
+                            마이페이지
+                        </button>
+                    </div>
     
   
                     {/* <ul class="hidden md:flex flex-auto space-x-2">
