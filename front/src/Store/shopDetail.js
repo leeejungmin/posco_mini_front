@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { useParams } from 'react-router';
 import { getShopDetail } from './shopsApi';
 
 const initialState = {
