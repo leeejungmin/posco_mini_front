@@ -9,8 +9,9 @@ const ShopList =()=>{
 	const getShoplist =()=>{
 		dispatch(selectShoplist());
 	};
-	console.log('shopList >> ')
-	console.log(shopList.shops);
+	//수정된 ShopList
+	//console.log('shopList >> ')
+	//console.log(shopList.shops);
 	useEffect(()=>{
 		getShoplist();
 	},[]);
