@@ -13,9 +13,8 @@ const initialState = {
 
 const SELECT_SHOP_LIST = "SELECT_SHOP_LIST";
 
-export const selectShoplist = createAsyncThunk(SELECT_SHOP_LIST,async (payload, thunkAPI)=>{
+export const selectShoplist =  createAsyncThunk(SELECT_SHOP_LIST, async (payload, thunkAPI)=>{
     const shopList = await getShopList();
-    //console.log(shopList);
     return shopList;
 });
 

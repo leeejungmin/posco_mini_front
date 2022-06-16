@@ -8,13 +8,42 @@ const ShopParty = () => {
 
     const navigate = useNavigate();
     const [shopState, setShopState, shop, setShop] = useState("");
+    const [data, setData] = useState({});
     const onMovePrev = () => {
         navigate('/list')
     }
-    const dispatch = useDispatch();
 
-    // party 데이터를 넘겨보자
-    const [partys, setPartys] = useState([]);
+    // axios로 데이터 보내기
+    useEffect(()=>{
+        axios.post('./add', data)
+        .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    },[data])
+
+    // const dispatch = useDispatch();
+
+    // 1. 현재 시간을 넣어보자
+    // const [timer, setTimer]=useState("00:00:00");
+    // const currentTimer=()=>{
+    //     //const year = 2022;
+    //     const date = new Date();
+    //     const hours=String(date.getHours()).padStart(2,"0");
+    //     const minutes=String(date.getminutes()).padStart(2,"0");
+    //     const seconds=String(date.getseconds()).padStart(2,"0");
+    //     setTimer(`${hours}:${minutes}:${seconds}`)
+    // }
+    // const startTimer=()=>{setInterval(currentTimer, 1000)}
+    // startTimer()
+
+    // 2. party 데이터(id, userid, shopid, date)를 넘겨보자
+
+
+    // const [partys, setPartys] = useState([]);
 
     // useEffect(()=>{
     //     axios({
@@ -27,13 +56,13 @@ const ShopParty = () => {
     // const onChangeHandler = async(e) => {
     //     const { name, value } = e.target;
     //     setShop({ ...shop, [name]: value });
-   await dispatch(push(shop));
+
     // };
     
-    useEffect(()=>{
-        axios.post('/전송할 주소')
+    // useEffect(()=>{
+    //     axios.post('/전송할 주소')
 
-    })
+    // })
 
 
 
@@ -69,8 +98,9 @@ const ShopParty = () => {
                                 </div>
                             </div>
 
-                            <div className="block w-full overflow-x-auto">
-                                <table className="items-center bg-transparent w-full border-collapse ">
+                            <div className="overflow-y-scroll h-60 block w-full overflow-x-auto">
+                           
+                                <table className=" items-center bg-transparent w-full border-collapse ">
                                     <thead>
                                         <tr>
                                             <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
@@ -151,6 +181,9 @@ const ShopParty = () => {
                                     </tbody>
 
                                 </table>
+
+                            </div>
+                            <div className=" block w-full overflow-x-auto">
                                 <br></br>
                                 <br></br>
                                 < div className="flex justify-center " >
@@ -173,7 +206,15 @@ const ShopParty = () => {
     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label=".form-select-sm example"
                                             onChange={(e) => {
                                                 const selectedShop = e.target.value;
-                                                setShopState(selectedShop);
+                                                console.log({
+                                                    date:new Date().toISOString(),
+                                                    shopId: e.target.value,
+                                                    userId:'d',
+                                                })
+                                                setData({date:new Date().toISOString(),
+                                                    shopId: e.target.value,
+                                                    userId:''})
+                                                
                                             }}
                                             defaultValue={"0"}
                                         >

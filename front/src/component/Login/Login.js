@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Form } from "reactstrap";
-// import { Button, Form, } from "reactstrap";
+import { Button, Form,  } from "reactstrap";
+import { loginRequestAction } from "../../Sagas/userApi";
 import { login } from '../../Store/user'
-// import "./Login.css";
-
 
 
 const Login = () => {
@@ -18,6 +16,17 @@ const Login = () => {
         userId: "",
         password: "",
     });
+    const state = useSelector((state) => state.users.isLogin);
+    console.log("This is seletor" + state);
+    useEffect(() => {
+        if (state) {
+          navigate("/");
+        } else {
+          setIsFail(true);
+          setTimeout(() => closeAlert(), 3000);
+        }
+      }, [state]);
+
     const onChangeHandler = (e) => {
 
         const { name, value } = e.target;
@@ -29,15 +38,10 @@ const Login = () => {
         navigate('/register')
     }
     const onSubmit = async (e) => {
+        console.log("onsubmit .............................");
         e.preventDefault();
-        const { isLogin } = await dispatch(login(user)).unwrap();
-
-        if (isLogin) {
-            navigate("/");
-        } else {
-            setIsFail(true);
-            setTimeout(() => closeAlert(), 3000);
-        }
+        dispatch(login(user));
+        navigate('/')
     };
 
     const closeAlert = () => {
@@ -46,7 +50,6 @@ const Login = () => {
 
     return (
         <>
-
 
             <br></br>
             <br></br>
@@ -74,7 +77,6 @@ const Login = () => {
                                             <input
                                                 className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                 type="text" placeholder="Username" name="userId" onChange={(e) => onChangeHandler(e)}
-
                                             />
 
                                         </div>
@@ -89,7 +91,6 @@ const Login = () => {
                                             />
                                             <p></p>
                                             <button
-                                                type="button"
                                                 data-mdb-ripple="true"
                                                 data-mdb-ripple-color="light"
                                                 className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"

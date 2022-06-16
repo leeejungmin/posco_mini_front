@@ -4,20 +4,23 @@ import { selectShoplist } from "../../../Store/shopslist";
 import Shops from "./Shops";
 
 const ShopList =()=>{
-   const shopList = useSelector((state)=>state.shops.shopList);
-   const dispatch = useDispatch();
-   const getShoplist =()=>{
-      dispatch(selectShoplist());
-   };
-   useEffect(()=>{
-      getShoplist();
-   },[]);
+	const shopList = useSelector((state)=>state.shops.shopList);
+	const dispatch = useDispatch();
+	const getShoplist =()=>{
+		dispatch(selectShoplist());
+		console.log(shopList.shops);
+	};
+	console.log(shopList);
+	
+	useEffect(()=>{
+		getShoplist();
+		
+	},[]);
 
 
     return(
         <>
-         <Shops shops={shopList.shops} shopState={shopList}></Shops>
-                              
+			<Shops shops={shopList.shops} shopState={shopList}></Shops>								
         </>
 
     );
