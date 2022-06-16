@@ -27,19 +27,17 @@ export const loginRequestAction = (data) => {
   };
 };
 
-export const loginCheck = async(data) => {
+export const loginCheck = () => {
   // 로그인 확인하기
-  console.log("reducer / logincheck...............");
-  console.log(data); 
-  //const { users, myId } = useSelector((state) => state.users);
-  // if (myId) {
-  //     const me = await getUserById(users, Number(myId));
-  //     return me;
-  // } else if (myId === 0 || myId === "0") {
-  //     const me = await getUserById(users, Number(myId));
-  //     return me;
-  // }
-  return;
+  const tokenc =  localStorage.getItem("token");
+ // console.log("reducer / logincheck..............."+tokenc);
+  console.log(tokenc? true : false)
+
+  //return tokenc? true : false
+  return {
+    type : LOG_IN_CHECK,
+    data : tokenc? true : false,
+  }
 };
 
 export const getUserById = async (users, id) => {

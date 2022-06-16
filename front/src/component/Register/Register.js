@@ -82,58 +82,65 @@ const Register = () => {
                     <div className="row justify-content-center">
                         <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
-                            <Form onSubmit={onSubmitLogin} className="mx-1 mx-md-4">
+                            <p className="font-sans-kr text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
+                            <div onSubmit={onSubmitLogin} className="mx-1 mx-md-4">
 
-                                <div className="d-flex flex-row align-items-center mb-4">
 
-                                    <div className="form-outline flex-fill mb-0">
-                                        <input type="text" id="form3Example1c" className="form-control" name="userId" onChange={(e) => onChangeHandler(e)} />
-                                        <label className="form-label"  >아이디</label>
+<div class="max-w-2xl mx-auto bg-white p-16">
+
+	<div>
+    <div class="grid gap-6 mb-6 lg:grid-cols-2">
+        <div>
+            <div for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">아이디</div>
+            <input type="text" id="form3Example1c" name="userId" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="JjangGu" required/>
+        </div>
+        <div>
+           
+        </div>
+        <div>
+            <div for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">이름</div>
+            <input type="text" id="form3Example1c" name="name" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="짱구" required/>
+        </div>  
+        <div>
+            
+        </div>
+        <div>
+            <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">비밀번호</label>
+            <input type="password" id="form3Example4c" name="password" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******" required/>
+        </div>
+        <div>
+            <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">비밀번호 확인</label>
+            <input  type="password" id="form3Example4cd"name="repassword" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******" required/>
+        </div>
+    </div>
+    <div class="mb-6">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">휴대전화</label>
+        <input type="text" id="form3Example3c" name="phoneNum" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="010-1234-5678" required/>
+    </div> 
+    
+    <div class="flex items-start mb-6">
+        <div class="flex items-center h-5">
+        <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required/>
+        </div>
+        <div for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-400">회원가입을 위한 위 정보 제공에 동의합니다.</div>
+    </div>
+    <br></br><br></br>
+    <div className="flex justify-center">
+                                        <button 
+                                            type={"submit"}
+                                            data-mdb-ripple="true"
+                                            data-mdb-ripple-color="light"
+                                            className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                                        >등록하기</button>
                                     </div>
-                                </div>
-                                <div className="d-flex flex-row align-items-center mb-4">
+</div>
 
-                                    <div className="form-outline flex-fill mb-0">
-                                        <input type="text" id="form3Example1c" className="form-control" name="name" onChange={(e) => onChangeHandler(e)} />
-                                        <label className="form-label"  >이름</label>
-                                    </div>
-                                </div>
-                                <div className="d-flex flex-row align-items-center mb-4">
 
-                                    <div className="form-outline flex-fill mb-0">
-                                        <input type="text" id="form3Example3c" className="form-control" name="phoneNum" onChange={(e) => onChangeHandler(e)} />
-                                        <label className="form-label"  >휴대전화</label>
-                                    </div>
-                                </div>
-
-                                <div className="d-flex flex-row align-items-center mb-4">
-
-                                    <div className="form-outline flex-fill mb-0">
-                                        <input type="password" id="form3Example4c" className="form-control" name="password" onChange={(e) => onChangeHandler(e)}/>
-                                        <label className="form-label"  >비밀번호</label>
-                                    </div>
-                                </div>
-
-                                <div className="d-flex flex-row align-items-center mb-4">
-
-                                    <div className="form-outline flex-fill mb-0">
-                                        <input type="password" id="form3Example4cd" className="form-control"name="repassword" onChange={(e) => onChangeHandler(e)}/>
-                                        <label className="form-label"  >비밀번호</label>
-                                    </div>
-                                </div>
-
-                                <button
-                                        type={"submit"}
-                                        data-mdb-ripple="true"
-                                        data-mdb-ripple-color="light"
-                                        class="inline-block px-6 py-2.5 bg-[#FFBC05] hover:bg-[#fcaf0a] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
-                                    >등록</button>
-
+</div>
                                
 
-                            </Form>
-
+                            </div>
+                         
                         </div>
 
                     </div>
