@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Alert } from "reactstrap";
 import { insertReview } from "../../Store/reviewReg";
@@ -13,9 +13,17 @@ const ReviewReg = () => {
     const[isFail,setIsFail] = useState(false);
     const[isSelectFail, setIsSelectFail] = useState(false);
     const[text, setText] = useState("");
+
+    const {id,location,name} = useSelector((state) => state.details.shopDetail.details.shop[0]);
     
+
+
+    console.log(id);
+    console.log(name);
+    console.log(location);
     const [reviewReg, setReviewReg] = useState({
-        shopId:"",
+        userId:localStorage.getItem("id"),
+        shopId:id,
         rate:"",
         photo:"",
         content:""
@@ -75,6 +83,7 @@ const ReviewReg = () => {
         // }
         // 보낼때 
         const insertReviews = await dispatch(insertReview(reviewReg)).unwrap();
+        navigate(`/detail/${id}`);
 
     }
 
@@ -97,17 +106,17 @@ const ReviewReg = () => {
                                     <div class="max-w-2xl mx-auto bg-white p-16">
 
                                         <div>
-                                            <div>                       
-                                                <label for="shopIds" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">식당명</label>
-                                                    <select id="shopIds" name="shopId" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                        <option selected>식당을 선택해주세요</option>
-                                                        <option value="1">오늘통닭</option>
-                                                        <option value="2">숯부레</option>
-                                                        <option value="3">하나우동</option>
-                                                        <option value="4">초선과여포</option>
-                                                        <option value="5">한돈애</option>
-                                                    </select>
-                                            </div>
+                                            
+
+                                                <div>
+                                                    <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">식당명</label>
+                                                    <input type="text" id="form3Example4c"  onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={name} readOnly required/>
+                                                </div>
+
+                                                <div>
+                                                    <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">위치</label>
+                                                    <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={location} readOnly required/>
+                                                </div>
                                                     
                                                     <div>
                                                         
@@ -133,10 +142,7 @@ const ReviewReg = () => {
                                                     <div>
                                                         
                                                     </div>
-                                                <div>
-                                                    <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">위치</label>
-                                                    <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="위치를 db에서 받아오기" required/>
-                                                </div>
+                                                
                                                 <div>
                                                     <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">사진</label>
                                                     <input  type="text" id="form3Example4cd"name="photo" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="사진등록" required/>

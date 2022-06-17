@@ -10,6 +10,7 @@ const initialState = {
     reviews: {},
     // myId: localStorage.getItem("id"),
     // isLogin: localStorage.getItem("id") === undefined ? true : false,
+    
     me: {},
 };
 
@@ -17,22 +18,20 @@ export const insertReview = createAsyncThunk(
     INSERT_REVIEW, async(review, thunkAPI) => {
         console.log(review);
         
-        const {reviews} = thunkAPI.getState().reviewReg.reviews;
+        // const {reviews} = thunkAPI.getState().reviewReg.reviews;
         // console.log(thunkAPI.getState());
-        // console.log(reviews);
-        await insertReviewApi(reviews, review);
+        await insertReviewApi( review);
     }
 );
 
 export const reviewSlice = createSlice({
     name:"reviews",
-    initialState,
+    initialState ,
     reducers: {},
     extraReducers:(builder) =>{
         builder
             .addCase(insertReview.fulfilled, (state, {payload}) => {
-                console.log(payload);
-                return {...state, reviews : payload};
+                return {...state, reviews : payload, me : localStorage.getItem('id')};
             })
     },
 });
