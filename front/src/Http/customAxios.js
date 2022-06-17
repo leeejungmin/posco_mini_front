@@ -26,3 +26,14 @@ export const customAxiosList = async (method, url, data) => {
     return response.data;
 
 };
+
+export const customAxiosParty = async (method, url, data) => {
+
+    const response = await axios({
+        method,
+        url,
+        data,
+    });
+    return response;
+
+};

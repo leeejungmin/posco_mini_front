@@ -29,7 +29,6 @@ export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI
 
 export const login = createAsyncThunk(LOGIN, async (user, thunkAPI) => {
     console.log("login reducer......................");
-    console.log(user);
     const { users } = thunkAPI.getState().users;
     const isLogin = await loginApi(users, user);
     return isLogin;
@@ -49,13 +48,14 @@ export const logout = createAsyncThunk(LOGOUT, async (payload, thunkAPI) => {
 
 //
 export const usersSlice = createSlice({
-    name: "users",
+    name: "usersasdfasdf",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(loginCheck.fulfilled, (state, { payload }) => {
                 if (payload) {
+                    
                     return { ...state, isLogin: true, me: payload };
                 } else {
                     return { ...state, isLogin: false };
@@ -63,12 +63,12 @@ export const usersSlice = createSlice({
             })
             .addCase(login.fulfilled, (state, { payload }) => {
                 if (payload.isLogin) {
-                    console.log("this is payload after isLogin" + payload);
+                    console.log("this is payload after isLogin" + payload.isLogin);
                     localStorage.setItem("id", payload.user.id);
-                    
+                    localStorage.setItem("token", payload.token);
                     return {
                         ...state,
-                        isLogin: payload.login, //
+                        isLogin: payload.isLogin, //
                         me: payload.user,
                         myId: payload.user.id,
                     };
