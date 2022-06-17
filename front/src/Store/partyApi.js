@@ -2,11 +2,10 @@
 import { customAxiosParty } from "../Http/customAxios";
 
 
-export const partyPostApi = async (partyUsers) => {
-    console.log("this is partyApi"+partyUsers);
-    const { data } = await customAxiosParty("post", "/party/register", partyUsers);
-   
-    
+export const partyPostApi = async (myId,shopId) => {
+    //console.log("this is partyPostApi"+  myId + "......"+ shopId);
+    const { data } = await customAxiosParty("get", `/shop/review/${shopId}`);
     //return { isLogin: data.isTrue ? true : false, user: data.user, isTrue: data.isTrue };
-    return { partyUsers: data ? data : false, };
+    console.log("this is sql"+  data + "......");
+    return data;
 };

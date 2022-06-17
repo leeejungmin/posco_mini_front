@@ -5,8 +5,9 @@ import {partyPostApi} from "./partyApi";
 const PARTY_REGISTER = "PARTYREGISTER";
 
 const initialState = {
-    partyUsers: "",
+    partyUsers: {},
     myId: localStorage.getItem("id"),
+    shopId: {},
     me: {},
 };
 
@@ -26,24 +27,30 @@ const initialState = {
 
 export const partyPost = createAsyncThunk(PARTY_REGISTER, async (payload, thunkAPI) => {
     console.log("Party register reducer......................");
-    const { partyUsers } = thunkAPI.getState().partyUsers;
-    await partyPostApi(partyUsers);
+    const { users,myId } = thunkAPI.getState().users;
+    console.log(users+ "Party register reducer......................"+ myId+ '.......' +payload);
+    //const { myId } = thunkAPI.getState().partyPost;
+    const {shopId} =  await partyPostApi("jj",payload);
+    return payload;
   });
   
 
 
 export const partyUsersSlice = createSlice({
-    name: "partyUsers",
+    name: "partyPost",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(partyPost.fulfilled, (state, { payload }) => {
-                if (payload) {
-                    return { ...state,  me: payload };
-                } else {
-                    return { ...state, me: false };
-                }
+                const newshopload = {...state, shopId : 5};
+                console.log("iside........."+ newshopload.shopId);
+                return {...state, partyUser: payload};
+                // if (payload) {
+                //     return { ...state,  me: payload, shopId: 5};
+                // } else {
+                //     return { ...state, me: false };
+                // }
             })
             // .addCase(login.fulfilled, (state, { payload }) => {
             //     if (payload.isLogin) {

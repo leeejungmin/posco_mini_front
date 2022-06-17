@@ -15,8 +15,9 @@ export const postUser = async (users, user) => {
 export const loginApi = async (users, user) => {
     console.log("this is loginApi"+user);
     const { data } = await customAxios("post", "/user/login", user);
-    localStorage.setItem("token", data.token);
-    console.log("this is loginAPI token" + data.token);
+
+    // localStorage.setItem("token", data.token);
+    console.log("this is loginAPI token............." + data.user);
     //return { isLogin: data.isTrue ? true : false, user: data.user, isTrue: data.isTrue };
     return { isLogin: data.token ? true : false, user: data.user, token: data.token };
 };

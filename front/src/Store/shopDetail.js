@@ -1,19 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { useParams } from 'react-router';
 import { getShopDetail } from './shopsApi';
 
 const initialState = {
     shopDetail: {
-        details: [],
+        details: {
+            review: [],
+            shop: [],
+        },
         loading: false,
         message: '',
+        shopId: '',
     },
 };
 
 const SELECT_SHOP_DETAIL = 'SELECT_SHOP_DETAIL';
 
 export const selectShopDetail = createAsyncThunk(SELECT_SHOP_DETAIL, async (payload, thunkAPI) => {
-    const shopDetail = await getShopDetail();
-    console.log(shopDetail);
+    // console.log('payload.id:', payload);
+    const shopDetail = await getShopDetail(payload.id);
+    // console.log(shopDetail);
     return shopDetail;
 });
 
@@ -25,7 +31,7 @@ export const detailSlice = createSlice({
         builder.addCase(selectShopDetail.fulfilled, (state, { payload }) => {
             const newShopDetail = { ...state.shopDetail };
             newShopDetail.loading = false;
-            newShopDetail.shops = payload;
+            newShopDetail.details = payload;
             return { ...state, shopDetail: newShopDetail };
         });
     },

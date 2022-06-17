@@ -2,21 +2,34 @@ import React, { useEffect, useState } from "react";
 import DateToday from "./DateToday";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from 'axios';
+import { Spinner } from "reactstrap";
+import { partyPost } from "../../Store/party"; 
 
-const ShopParty = ({partys,partyState}) => {
-
+const ShopParty = ({partysPeople,partyState}) => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [shopState, shops] = useState("");
+    const [shops,setshop] = useState("");
     const [data, setData] = useState({});
-   
+    const [shopId,setshopId] = useState("");
+    const [ trBoolean,settrBoolean] = useState(true);
 
     useEffect(()=>{
-      
-    },[data])
+      console.log('Here Party............');
+    },[])
 
     const onMovePrev = () => {
         navigate('/list')
+    }
+    const onClickEvent = () => {
+        console.log("Here check shop id........"+shopId);
+        dispatch(partyPost(shopId));
+    }
+    const onChangeE = (e) => {
+        const v = e.target.value;
+        
+        setshopId(v);
+        console.log("Here check v id........"+shopId);
+        
     }
     return (
         <>
@@ -25,7 +38,6 @@ const ShopParty = ({partys,partyState}) => {
             <br></br>
             <br></br>
             <br></br>
-
             <div className="flex justify-center ">
                 <DateToday />
             </div>
@@ -43,59 +55,56 @@ const ShopParty = ({partys,partyState}) => {
                                     <div>
                                         <h3 className="font-sans-kr text-mainblack text-2x3 text-blueGray-700">식사 참여자 현황</h3>
                                     </div>
-
                                 </div>
                             </div>
-
                             <div className="overflow-y-scroll h-80 block w-full overflow-x-auto">
-                           
                                 <table className=" items-center bg-transparent w-full border-collapse ">
                                     <thead>
                                         <tr>
-                                            {partyState.loading?(
-                                                <Spinner>Loading...</Spinner>
-                                                ):(
-                                                    partys?.map((value, index) => 
-                                                    <th key={index} value={value} className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                숯부레
-                                                    </th>
-                                                    
-                                                    )
-                                            )}
                                             <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                숯부레
+                                                숯부레 1
                                             </th>
                                             <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                오늘 통닭
+                                                오늘 통닭 2
                                             </th>
                                             <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                초선과 여포
+                                                초선과 여포 3
                                             </th>
                                             <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                하나우동
+                                                하나우동 4
                                             </th>
                                             <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                한돈애
+                                                한돈애 5
                                             </th>
                                         </tr>
                                     </thead>
-
+ {/*value.shop participate name*/}
                                     <tbody>
+                                    {/* {partyState.loading?(
+                                       
+                                                <Spinner>Loading...</Spinner>
+                                                ):(
+                                                    partysPeople?.map((value, index) => 
+                                                    <th key={index} value={value} className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                         {value.shopid === '1' ? <span className="font-medium"> {value.name} </span> : null}
+                                                    </th>
+                                            )
+                                            )} */}
                                         <tr>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 text-blueGray-700 border border-solid border-blueGray-100">
-                                                {shopState === '2' ? <span className="font-medium">철수</span> : null}
+                                            {setshop.shopid === '1' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                            {shopState === '1' ? <span className="font-medium">철수</span> : null}
+                                            {setshop.shopid === '2' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-center border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                            {shopState === '4' ? <span className="font-medium">철수</span> : null}
+                                            {setshop.shopid === '3' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                            {shopState === '3' ? <span className="font-medium">철수</span> : null}
+                                            {setshop.shopid === '4' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                            {shopState === '5' ? <span className="font-medium">철수</span> : null}
+                                            {setshop.shopid === '5' ? <span className="font-medium">철수</span> : null}
                                             </td>
                                         </tr>
                                         <tr>
@@ -132,13 +141,9 @@ const ShopParty = ({partys,partyState}) => {
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-center text-sm whitespace-nowrap p-4 border border-solid border-blueGray-100">
 
-
                                             </td>
                                         </tr>
-
-
                                     </tbody>
-
                                 </table>
 
                             </div>
@@ -163,7 +168,8 @@ const ShopParty = ({partys,partyState}) => {
                                                 ease-in-out
                                                 m-0
                                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label=".form-select-sm example"
-                                            onChange={(e) => {
+                                            onChange={(e) => { 
+                                                onChangeE(e);
                                                 const selectedShop = e.target.value;
                                                 console.log({
                                                     date:new Date().toISOString(),
@@ -184,23 +190,22 @@ const ShopParty = ({partys,partyState}) => {
                                             <option value="3">하나우동</option>
                                             <option value="5">한돈애</option>
                                         </select>
-
                                     </div>
-                                  
-                                    
                                 </div>
                                 <div className="flex justify-center">
-                <button 
-                    type="button"
-                    data-mdb-ripple="true"
-                    data-mdb-ripple-color="light"
-                    className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
-                >참여자 등록</button>
-            </div>
-                            </div>
-
+                            <button 
+                                type="button"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                                className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                                onClick={onClickEvent}
+                                >참여자 등록
+                            </button>
                         </div>
                     </div>
+
+                </div>
+            </div>
 
 
 
