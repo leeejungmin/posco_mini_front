@@ -36,6 +36,7 @@ export const login = createAsyncThunk(LOGIN, async (user, thunkAPI) => {
 });
 
 export const insertUser = createAsyncThunk(INSERT_USER, async (user, thunkAPI) => {
+    console.log("register reducer......................");
     const { users } = thunkAPI.getState().users;
     await postUser(users, user);
   });

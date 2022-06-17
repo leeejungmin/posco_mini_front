@@ -14,7 +14,7 @@ const AuthRouter = () => {
         const tokenc =  localStorage.getItem("token");
         const isLogin = tokenc? true : false;
         //console.log("reducer / logincheck..............."+isLogin);
-        isLogin ? toGo() : toGo();
+        isLogin ? toGo() : toHome();
     };
     const toHome = () => {
         const from =
