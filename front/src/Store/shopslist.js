@@ -1,37 +1,33 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import ShopList from "../component/Shop/List/ShopList";
-import { getShopList } from "./shopsApi";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+import { getShopList } from './shopsApi';
 
 const initialState = {
-    shopList:{
-        shops:[],
+    shopList: {
+        shops: [],
         loading: false,
-        message: "",
-    }
+        message: '',
+    },
+};
 
-}
+const SELECT_SHOP_LIST = 'SELECT_SHOP_LIST';
 
-const SELECT_SHOP_LIST = "SELECT_SHOP_LIST";
-
-export const selectShoplist = createAsyncThunk(SELECT_SHOP_LIST,async (payload, thunkAPI)=>{
+export const selectShoplist = createAsyncThunk(SELECT_SHOP_LIST, async (payload, thunkAPI) => {
     const shopList = await getShopList();
-    console.log(shopList);
     return shopList;
 });
 
 export const shopsSlice = createSlice({
-    name:"shops",
+    name: 'shops',
     initialState,
-    reducers:{},
-    extraReducers:(builder)=>{
-        builder
-        .addCase(selectShoplist.fulfilled, (state,{payload})=>{
-            const newShoplist = {...state.ShopList};
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(selectShoplist.fulfilled, (state, { payload }) => {
+            const newShoplist = { ...state.shopList };
             newShoplist.loading = false;
             newShoplist.shops = payload;
-            return {...state, shopList : newShoplist };
-        })
-
-    }
-})
+            return { ...state, shopList: newShoplist };
+        });
+    },
+});
 export default shopsSlice.reducer;
