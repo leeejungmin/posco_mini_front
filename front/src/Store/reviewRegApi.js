@@ -1,6 +1,6 @@
 import { customAxios } from "../Http/customAxios"
 
-export const insertReviewApi = async(reviews, review) => {
+export const insertReviewApi = async(review) => {
     // console.log(reviews);
     console.log(review);
     const {status} = await customAxios("post", "/review/create", review );
