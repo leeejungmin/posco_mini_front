@@ -52,6 +52,16 @@ const ShopParty = () => {
     //     }).then(Response => setPartys(response.data)) // 데이터 불러오기
     // })
 
+    // party 데이터를 넘겨보자
+    const [partys, setPartys] = useState([]);
+
+    useEffect(()=>{
+        axios({
+            method: 'POST',
+            url: ''
+        }).then(Response => setPartys(response.data)) // 데이터 불러오기
+    })
+
     // shopid db에 넣기
     // const onChangeHandler = async(e) => {
     //     const { name, value } = e.target;
