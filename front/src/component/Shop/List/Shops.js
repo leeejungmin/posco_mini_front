@@ -10,9 +10,10 @@ const Shops =({shops,shopState})=>{
 	const onMoveDetail =(valueid, e) =>{
 		console.log("valueid ........."+ valueid);
 		//리스트 하나 누르면 axios로 shop/detail 부르고 페이지 넘어가기
+
         navigate(`/detail/${valueid}`);
-    }
-    return(
+    };
+    return (
         <>
 		<div className="section relative pt-20 pb-8 md:pt-16 md:pb-0 bg-white">
 		<div className="">
@@ -117,8 +118,7 @@ const Shops =({shops,shopState})=>{
 			</div>
 										 */}
         </>
-
     );
-}
+};
 
 export default Shops;
