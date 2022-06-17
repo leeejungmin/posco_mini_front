@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IMG_PATH } from '../../../Http/customAxios';
 
 const Shops = ({ shops, shopState }) => {
+    console.log('shops?:', shops);
     const navigate = useNavigate();
     const onMoveNext = () => {
         navigate('/party');

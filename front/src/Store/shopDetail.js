@@ -4,7 +4,10 @@ import { getShopDetail } from './shopsApi';
 
 const initialState = {
     shopDetail: {
-        details: [],
+        details: {
+            review: [],
+            shop: [],
+        },
         loading: false,
         message: '',
         shopId: '',

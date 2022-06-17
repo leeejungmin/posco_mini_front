@@ -20,7 +20,7 @@ const ShopDetail = () => {
 
     return (
         <div>
-            <Details detailState={shopDetail}></Details>
+            <Details details={shopDetail.details} detailState={shopDetail}></Details>
         </div>
     );
 };
