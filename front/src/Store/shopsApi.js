@@ -12,7 +12,7 @@ export const getShopList = async () => {
 export const getShopDetail = async (shopId) => {
     try {
         const response = await customAxiosList('get', `/shop/detail/${shopId}`, null);
-        //console.log(response);
+
         return response;
     } catch (error) {
         throw error;

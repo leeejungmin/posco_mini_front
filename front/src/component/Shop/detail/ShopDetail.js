@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import shopDetail, { selectShopDetail } from '../../../Store/shopDetail';
+import { selectShopDetail } from '../../../Store/shopDetail';
 import Details from './Details';
 
 const ShopDetail = () => {
+    const shopDetail = useSelector((state) => state.details.shopDetail);
     const shopId = useParams();
-    console.log('Selected ShopId: ', shopId); //2
+    // console.log('Selected ShopId: ', shopId); //2
 
     const dispatch = useDispatch();
     const getShopDetail = () => {
@@ -15,7 +16,7 @@ const ShopDetail = () => {
 
     useEffect(() => {
         getShopDetail();
-    });
+    }, []);
 
     return (
         <div>
