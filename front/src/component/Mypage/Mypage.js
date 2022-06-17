@@ -1,13 +1,26 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router";
+import { selectUserlist } from "../../Store/mypage";
 import { logout } from "../../Store/user";
 
 const Mypage = () => {
-  const { userId, phoneNum, name } = useSelector((state) => state.users.me
+  const userDetail = useSelector((state) => state.users
   );
   // console.log(state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    getUserlist();
+  }, []);
+
+  const getUserlist = async (e) => {
+    console.log(userDetail.me.id);
+    dispatch(selectUserlist(userDetail.me.id));
+    
+
+  };
 
   const onUserDelete = async (e) => {
     console.log("회원탈퇴");
@@ -46,19 +59,19 @@ const Mypage = () => {
               <h1 class="flex-auto text-lg font-semibold text-slate-900">
                 userId
               </h1>
-              <div class="text-lg font-semibold text-slate-500">{userId}</div>
+              <div class="text-lg font-semibold text-slate-500">{userDetail.me.userId}</div>
             </div>
             <div class="flex flex-wrap">
               <h1 class="flex-auto text-lg font-semibold text-slate-900">
                 이름
               </h1>
-              <div class="text-lg font-semibold text-slate-500">{name}</div>
+              <div class="text-lg font-semibold text-slate-500">{userDetail.me.name}</div>
             </div>
             <div class="flex flex-wrap">
               <h1 class="flex-auto text-lg font-semibold text-slate-900">
                 폰번호
               </h1>
-              <div class="text-lg font-semibold text-slate-500">{phoneNum}</div>
+              <div class="text-lg font-semibold text-slate-500">{userDetail.me.phoneNum}</div>
             </div>
 
             <div class="flex-auto flex space-x-4">
