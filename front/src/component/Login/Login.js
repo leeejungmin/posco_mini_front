@@ -15,13 +15,14 @@ const Login = () => {
         password: "",
     });
     const state = useSelector((state) => state.users.isLogin);
-    console.log("This is seletor" + state);
+    
     useEffect(() => {
         if (state) {
           navigate("/");
         } else {
           setIsFail(true);
-          setTimeout(() => closeAlert(), 3000);
+          navigate("/login");
+          setTimeout(() => closeAlert(), 500);
         }
       }, [state]);
 
@@ -36,10 +37,8 @@ const Login = () => {
         navigate('/register')
     }
     const onSubmit = async (e) => {
-        console.log("onsubmit .............................");
         e.preventDefault();
         dispatch(login(user));
-        navigate('/')
     };
 
     const closeAlert = () => {
