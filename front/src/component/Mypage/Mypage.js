@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router";
-import { selectUserlist } from "../../Store/mypage";
-import { logout } from "../../Store/user";
+
+import { deleteUser, logout, selectUserlist } from "../../Store/user";
 
 const Mypage = () => {
   const userDetail = useSelector((state) => state.users
@@ -12,7 +12,7 @@ const Mypage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getUserlist();
+   getUserlist();
   }, []);
 
   const getUserlist = async (e) => {
@@ -24,8 +24,10 @@ const Mypage = () => {
 
   const onUserDelete = async (e) => {
     console.log("회원탈퇴");
-
-    // navigate("/list");
+    dispatch(deleteUser());
+    
+    alert("회원탈퇴되었습니다");
+    navigate("/login");
   };
   const onLogout = async (e) => {
     console.log("logout들어옴");

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
     const navigate = useNavigate();
+    const [headFail, setHeaderFail] = useState(false);
     const [isFail, setIsFail] = useState(false);
     const location = useLocation();
     const MoveHome = () => {
@@ -14,14 +15,14 @@ const Header = () => {
         navigate('/mypage');
     };
 
-    const state = useSelector((state) => state.users.myId);
+    const state = useSelector((state) => state);
 
     useEffect(() => {
         showMypage();
     }, [state]);
 
     const showMypage = () => {
-        const from = location.pathname === '/login' ? setIsFail(true) : setIsFail(false);
+        location.pathname === '/login' ? setHeaderFail(true) : setHeaderFail(false);
     };
 
     // if(tmp == "/login"){
@@ -44,7 +45,7 @@ const Header = () => {
 
                         <h2 className="font-sans-kr text-2xl leading-6 text-gray-800 dark:text-white ">같이 먹어요</h2>
                     </div>
-                    {isFail ? null : (
+                    {headFail ? null : (
                         <div>
                             <button onClick={MoveMypage}>마이페이지</button>
                         </div>

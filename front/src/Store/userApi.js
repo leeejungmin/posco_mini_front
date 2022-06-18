@@ -31,3 +31,12 @@ export const getUserById = async (users, id) => {
     return data;
 };
 
+export const deleteUserApi = async () => {
+    const { status } = await customAxios("delete","/user/",null);
+  if (status !== 201) {
+    throw new Error("error");
+  }
+  return status;
+
+};
+
