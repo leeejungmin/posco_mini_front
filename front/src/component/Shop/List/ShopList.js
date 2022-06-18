@@ -12,7 +12,7 @@ const ShopList =()=>{
 		//const shopList=dispatch(selectShoplist());
 		//console.log(shopList.shops);
 	};
-	console.log(shopList);
+	//console.log(shopList);
 	
 	useEffect(()=>{
 		//페이지 바뀔 때만 state값 바꿔주기 위함
