@@ -50,7 +50,7 @@ const Details = ({ details, detailState }) => {
                                             details.review.map((v, index) => (
                                                 <li className=" flex flex-row mb-2" key={index} name={v}>
                                                     <div className="select-none rounded-md flex flex-1 items-center p-1 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-1 p-6 mt-3 border-mainYellow hover:shadow-2xl">
-                                                        {v.userId}
+                                                        {v.userName}
                                                         <br></br>
                                                         내용: {v.content}
                                                         <br></br>
