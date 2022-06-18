@@ -38,10 +38,26 @@ const ShopParty = ({partysPeople,partyState}) => {
         setshopId(v);
         console.log("Here check v id........"+shopId);   
     }
-    const myData = [{angle: 1, opacity: 0.2, label: 'jung',  style: {fontSize: 10}},
-                    {angle: 5, label:"min"},
-                    {angle: 2, label:"lee"}
-                ]
+     // 표에 넣어보기
+     const aaa =
+     [{ name: '한돈애짱구', shopId: 5 },
+     { name: '숯부레짱구', shopId: 1 },
+     { name: '오늘통닭맹구', shopId: 2 },
+     { name: '초선과여포철수', shopId: 3 },
+     { name: '하나우동짱구', shopId: 4 },
+     { name: '숯부레유리', shopId: 1 },
+     { name: '오늘 통닭짱구', shopId: 2 },
+     { name: '숯부레유리', shopId: 1 },
+     ]
+
+     const myData = [{ angle: 1, label: '숯부레', opacity: 0.2, style: { fontSize: 10 } },
+     { angle: 5, label: "오늘 통닭" },
+     { angle: 2, label: "초선과 여포" },
+     { angle: 2, label: "ㅤ하나 우동" },
+     { angle: 2, label: "한돈애" }
+     ]
+ 
+     
                 return (
                     <>
                         <div></div>
@@ -101,19 +117,19 @@ const ShopParty = ({partysPeople,partyState}) => {
                                                         <thead>
                                                             <tr>
                                                                 <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-1 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                                    숯부레 1
+                                                                    숯부레 
                                                                 </th>
                                                                 <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                                    오늘 통닭 2
+                                                                    오늘 통닭 
                                                                 </th>
                                                                 <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                                    초선과 여포 3
+                                                                    초선과 여포 
                                                                 </th>
                                                                 <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                                    하나우동 4
+                                                                    하나우동 
                                                                 </th>
                                                                 <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                                    한돈애 5
+                                                                    한돈애 
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -131,28 +147,37 @@ const ShopParty = ({partysPeople,partyState}) => {
                                                         )} */}
                                                             <tr>
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 text-blueGray-700 border border-solid border-blueGray-100">
-                                                                    짱구
-                                                                    <br></br>
-                                                                    맹구
-                                                                    <br></br>
-                                                                    철수
+                                                                    {aaa.map((value, index) => 
+                                                                        value.shopId === 1? 
+                                                                        <tr>{value.name}</tr> : null
+                                                                    )}
                                                                 </td>
                                                                 {/* {value.shopid === 1 ? <span className="font-medium"> {aaa.aaadata[1].name} </span> : null} */}
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                    철수
+                                                                     {aaa.map((value, index) => 
+                                                                        value.shopId === 2? 
+                                                                        <tr>{value.name}</tr> : null
+                                                                    )}
                                                                 </td>
                                                                 <td className="border-t-0 px-12 align-center border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                    맹구
+                                                                     {aaa.map((value, index) => 
+                                                                        value.shopId === 3? 
+                                                                        <tr>{value.name}</tr> : null
+                                                                    )}
                                                                 </td>
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                    유리
+                                                                    {aaa.map((value, index) => 
+                                                                        value.shopId === 4? 
+                                                                        <tr>{value.name}</tr> : null
+                                                                    )}
                                                                 </td>
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                    훈이
+                                                                     {aaa.map((value, index) => 
+                                                                        value.shopId === 5? 
+                                                                        <tr>{value.name}</tr> : null
+                                                                    )}
                                                                 </td>
                                                             </tr>
-            
-            
                                                         </tbody>
                                                     </table>
                                                     <div className=" block w-full overflow-x-auto">
