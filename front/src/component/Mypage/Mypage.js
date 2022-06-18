@@ -1,31 +1,37 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router";
-import { selectUserlist } from "../../Store/mypage";
-import { logout } from "../../Store/user";
+
+import { countReview, deleteUser, logout, selectUserlist } from "../../Store/user";
 
 const Mypage = () => {
   const userDetail = useSelector((state) => state.users
   );
-  // console.log(state);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getUserlist();
+   getUserlist();
+  
   }, []);
+
 
   const getUserlist = async (e) => {
     console.log(userDetail.me.id);
     dispatch(selectUserlist(userDetail.me.id));
-    
+    dispatch(countReview());
 
   };
 
+ 
+
   const onUserDelete = async (e) => {
     console.log("회원탈퇴");
-
-    // navigate("/list");
+    dispatch(deleteUser());
+    
+    alert("회원탈퇴되었습니다");
+    navigate("/login");
   };
   const onLogout = async (e) => {
     console.log("logout들어옴");
@@ -52,7 +58,7 @@ const Mypage = () => {
               <h1 class="flex-auto text-lg font-semibold text-slate-900">
                 맛집등록수
               </h1>
-              <div class="text-lg font-semibold text-slate-500">몇개</div>
+              <div class="text-lg font-semibold text-slate-500">{userDetail.count.data}</div>
             </div>
 
             <div class="flex flex-wrap">

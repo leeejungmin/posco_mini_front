@@ -27,7 +27,21 @@ export const logoutApi = async (userId) => {
 };
 export const getUserById = async (users, id) => {
     // const findUserById = await users.find((user) => user.id === id);
-    const { data } = await customAxios("get", `/user/${id}`);
+    const { data } = await customAxios("get", "/user/me");
     return data;
 };
+
+export const deleteUserApi = async () => {
+    const { status } = await customAxios("delete","/user/",null);
+  if (status !== 201) {
+    throw new Error("error");
+  }
+  return status;
+
+};
+
+export const getcountReview  = async () => {
+    const countRes = await customAxios("get", "/review/count");
+    return countRes;
+}
 

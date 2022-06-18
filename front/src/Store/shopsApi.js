@@ -2,7 +2,7 @@ import { customAxiosList } from '../Http/customAxios';
 
 export const getShopList = async () => {
     try {
-        const response = await customAxiosList('get', '/shop/', null);
+        const response = await customAxiosList('get', '/shop/rate', null);
         //console.log(response);
         return response;
     } catch (error) {

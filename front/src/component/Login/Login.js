@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Form,  } from "reactstrap";
 import { loginRequestAction } from "../../Sagas/userApi";
-import { login } from '../../Store/user'
+import { login, loginCheck } from '../../Store/user'
 
 
 const Login = () => {
@@ -23,6 +23,7 @@ const Login = () => {
           setIsFail(true);
           navigate("/login");
           setTimeout(() => closeAlert(), 500);
+        //   dispatch(loginCheck());
         }
       }, [state]);
 
