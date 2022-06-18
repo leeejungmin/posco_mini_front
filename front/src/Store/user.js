@@ -105,6 +105,7 @@ export const usersSlice = createSlice({
             })
             .addCase(selectUserlist.fulfilled,(state, {payload}) => {
                 console.log(payload);
+                return {...state, me : payload};
             })
     },
 });

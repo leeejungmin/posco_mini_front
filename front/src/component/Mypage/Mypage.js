@@ -7,7 +7,7 @@ import { deleteUser, logout, selectUserlist } from "../../Store/user";
 const Mypage = () => {
   const userDetail = useSelector((state) => state.users
   );
-  // console.log(state);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
