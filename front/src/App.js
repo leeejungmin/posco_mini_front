@@ -8,6 +8,7 @@ import Party from './component/Party/Party';
 import Mypage from './component/Mypage/Mypage';
 import ReviewReg from './component/ReviewReg/ReviewReg';
 import ShopDetail from './component/Shop/detail/ShopDetail';
+import ChatRoom from './component/Chat/ChatRoom';
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                     <Route path="party" element={<Party></Party>}></Route>
                     <Route path="mypage" element={<Mypage></Mypage>}></Route>
                     <Route path="reviewReg" element={<ReviewReg></ReviewReg>}></Route>
+                    <Route path="chat" element={<ChatRoom></ChatRoom>}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>
