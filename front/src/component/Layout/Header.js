@@ -47,7 +47,12 @@ const Header = () => {
                     </div>
                     {headFail ? null : (
                         <div>
-                            <button onClick={MoveMypage}>마이페이지</button>
+                           <button onClick={MoveMypage}
+                    type="button"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                                className="inline-block px-2.5 py-2 bg-subYellow hover:bg-subYellow text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                            >마이페이지</button>
                         </div>
                     )}
 

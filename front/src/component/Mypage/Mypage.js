@@ -88,7 +88,7 @@ const Mypage = () => {
                 로그아웃
               </button>
               <button
-                class="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900"
+                class="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
                 type="button"
                 onClick={onUserDelete}
               >
