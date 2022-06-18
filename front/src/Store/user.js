@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {deleteUserApi, getUserById, loginApi, logoutApi, postUser} from "./userApi";
+import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postUser} from "./userApi";
 
 
 const LOGIN = "LOGIN";
@@ -8,12 +8,14 @@ const INSERT_USER = "INSERT_USER";
 const LOGIN_CHECK = "LOGIN_CHECK";
 const DELETE_USER = "DELETE_USER";
 const SELECT_USERLIST = "SELECT_USERLIST";
+const COUNT_REVIEW = "COUNT_REVIEW";
 
 const initialState = {
     users: "",
     myId: localStorage.getItem("id"),
     isLogin: localStorage.getItem("id") === undefined ? true : false,
     me: {},
+    count:"",
 };
 
 export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI) => {
@@ -60,6 +62,12 @@ export const selectUserlist = createAsyncThunk(SELECT_USERLIST, async (payload, 
     
 });
 
+export const countReview = createAsyncThunk(COUNT_REVIEW, async(payload, thunkAPI) => {
+    const countRes = await getcountReview();
+    return countRes
+
+})
+
 //
 export const usersSlice = createSlice({
     name: "usersasdfasdf",
@@ -104,8 +112,12 @@ export const usersSlice = createSlice({
                 return {...state, isLogin: false, me:{}, myId:""};
             })
             .addCase(selectUserlist.fulfilled,(state, {payload}) => {
-                console.log(payload);
+                console.log("mypaga : " + payload);
                 return {...state, me : payload};
+            })
+            .addCase(countReview.fulfilled,(state, {payload}) => {
+                console.log("count review : " + payload);
+                return {...state, count : payload};
             })
     },
 });

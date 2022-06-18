@@ -40,3 +40,8 @@ export const deleteUserApi = async () => {
 
 };
 
+export const getcountReview  = async () => {
+    const countRes = await customAxios("get", "/review/count");
+    return countRes;
+}
+
