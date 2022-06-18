@@ -28,10 +28,12 @@ const initialState = {
 export const partyPost = createAsyncThunk(PARTY_REGISTER, async (payload, thunkAPI) => {
     console.log("Party register reducer......................");
     const { users,myId } = thunkAPI.getState().users;
-    console.log(users+ "Party register reducer......................"+ myId+ '.......' +payload);
+    
+    const resultload = {...payload,userId:myId, shopId:payload};
     //const { myId } = thunkAPI.getState().partyPost;
-    const {shopId} =  await partyPostApi("jj",payload);
-    return payload;
+    const shopId =  await partyPostApi(resultload);
+    console.log("after axios  reducer......................"+ myId+ '.......' +shopId);
+    return shopId;
   });
   
 
@@ -44,8 +46,9 @@ export const partyUsersSlice = createSlice({
         builder
             .addCase(partyPost.fulfilled, (state, { payload }) => {
                 const newshopload = {...state, shopId : 5};
-                console.log("iside........."+ newshopload.shopId);
-                return {...state, partyUser: payload};
+                //console.log("iside........."+ newshopload.shopId);
+                console.log("iside........."+ payload);
+                return {...state, partyUsers: payload};
                 // if (payload) {
                 //     return { ...state,  me: payload, shopId: 5};
                 // } else {
