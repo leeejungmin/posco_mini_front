@@ -27,7 +27,7 @@ const Register = () => {
     };
 
     const dispatch = useDispatch();
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const onSubmitLogin = async (e) => {
         e.preventDefault();
         if (user.userId === "") {
@@ -60,7 +60,7 @@ const Register = () => {
         }
 
         await dispatch(login(user));
-       // navigate("/");
+        navigate("/");
 
     };
 
@@ -81,9 +81,15 @@ const Register = () => {
 
                     <div className="row justify-content-center">
                         <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+<<<<<<< HEAD
 <br></br><br></br><br></br><br></br><br></br>
                             {/* <p className="font-sans-kr text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p> */}
                             <div onSubmit={onSubmitLogin} className="mx-1 mx-md-4">
+=======
+
+                            <p className="font-sans-kr text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
+                            <Form onSubmit={onSubmitLogin} className="mx-1 mx-md-4">
+>>>>>>> ceae509d9943b9f9df0b15e702a8f6e0d474eda1
 
 
 <div className="max-w-2xl mx-auto bg-white p-16">
@@ -127,7 +133,6 @@ const Register = () => {
     <br></br><br></br>
     <div className="flex justify-center">
                                         <button 
-                                            type={"submit"}
                                             data-mdb-ripple="true"
                                             data-mdb-ripple-color="light"
                                             className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
@@ -139,7 +144,7 @@ const Register = () => {
 </div>
                                
 
-                            </div>
+                            </Form>
                          
                         </div>
 
