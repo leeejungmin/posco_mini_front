@@ -1,4 +1,5 @@
 import userSaga from "./user";
+import { registerSaga } from "./register";
 import { all, fork } from "redux-saga/effects";
 
 export default function* rootSaga() {
@@ -6,5 +7,6 @@ export default function* rootSaga() {
   yield all([
     // fork는 generator함수를 실행하도록 하는 것 !== call
     fork(userSaga),
+    fork(registerSaga),
   ]);
 }
