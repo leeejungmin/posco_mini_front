@@ -42,11 +42,12 @@ const Mypage = () => {
   return (
     <>
       <form className=" 2xl:container content-center 2xl:mx-auto ">
-        <div className="flex flex-wrap select-none rounded-md  p-4 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 mt-3 border-mainYellow hover:shadow-2xl">
+        <div className=" flex-wrap select-none rounded-md  p-4 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 mt-3 border-mainYellow hover:shadow-2xl">
           <form className="flex-auto p-6 ">
-            <div>
+            <div className = "">
               <img
-                class="w-full"
+                className="w-full 
+                object-cover object-center "
                 src="/img/logo.jpg"
                 alt="Sunset in the mountains"
               ></img>
