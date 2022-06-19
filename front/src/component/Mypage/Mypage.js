@@ -41,55 +41,55 @@ const Mypage = () => {
 
   return (
     <>
-      <form className=" flex-auto p-6 ">
+      <form className=" 2xl:container content-center 2xl:mx-auto ">
         <div className="flex flex-wrap select-none rounded-md  p-4 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 mt-3 border-mainYellow hover:shadow-2xl">
-          <form class="flex-auto p-6 ">
+          <form className="flex-auto p-6 ">
             <div>
               <img
                 class="w-full"
-                src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"
+                src="/img/logo.jpg"
                 alt="Sunset in the mountains"
               ></img>
             </div>
 
-            <div class="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200 "></div>
+            <div className="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200 "></div>
 
-            <div class="flex flex-wrap">
-              <h1 class="flex-auto text-lg font-semibold text-slate-900">
+            <div className="flex flex-wrap">
+              <h1 className="flex-auto text-lg font-semibold text-slate-900">
                 맛집등록수
               </h1>
-              <div class="text-lg font-semibold text-slate-500">{userDetail.count.data}</div>
+              <div className="text-lg font-semibold text-slate-500">{userDetail.count.data}</div>
             </div>
 
-            <div class="flex flex-wrap">
-              <h1 class="flex-auto text-lg font-semibold text-slate-900">
+            <div className="flex flex-wrap">
+              <h1 className="flex-auto text-lg font-semibold text-slate-900">
                 userId
               </h1>
-              <div class="text-lg font-semibold text-slate-500">{userDetail.me.userId}</div>
+              <div className="text-lg font-semibold text-slate-500">{userDetail.me.userId}</div>
             </div>
-            <div class="flex flex-wrap">
-              <h1 class="flex-auto text-lg font-semibold text-slate-900">
+            <div className="flex flex-wrap">
+              <h1 className="flex-auto text-lg font-semibold text-slate-900">
                 이름
               </h1>
-              <div class="text-lg font-semibold text-slate-500">{userDetail.me.name}</div>
+              <div className="text-lg font-semibold text-slate-500">{userDetail.me.name}</div>
             </div>
-            <div class="flex flex-wrap">
-              <h1 class="flex-auto text-lg font-semibold text-slate-900">
+            <div className="flex flex-wrap">
+              <h1 className="flex-auto text-lg font-semibold text-slate-900">
                 폰번호
               </h1>
-              <div class="text-lg font-semibold text-slate-500">{userDetail.me.phoneNum}</div>
+              <div className="text-lg font-semibold text-slate-500">{userDetail.me.phoneNum}</div>
             </div>
 
-            <div class="flex-auto flex space-x-4">
+            <div className="flex-auto flex space-x-4">
               <button
-                class="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
+                className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
                 onClick={onLogout}
               >
                 로그아웃
               </button>
               <button
-                class="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900"
-                type="button"
+                className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
+               
                 onClick={onUserDelete}
               >
                 회원탈퇴
