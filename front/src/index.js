@@ -5,8 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./Store/store";
+<<<<<<< HEAD
 //import createStore from './reducers/store';
 const root = ReactDOM.createRoot(document.getElementById("root"));
+=======
+//import createStore from "./Sagas/index";
+import createStore from './reducers/store';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+>>>>>>> 62a46dbfdb9d6983b13b820d3157d7dc5ea1bb05
 root.render(
     <React.StrictMode>
         <Provider store={store}>

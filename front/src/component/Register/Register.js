@@ -8,6 +8,7 @@ import {IconName} from "react-icons";
 import React, { useState } from "react";
 import { Alert, Button, Col, Container, Form, Input, Row } from "reactstrap";
 import {insertUser, login} from "../../Store/user";
+import { registerRequest } from "../../Sagas/register";
 
 
 
@@ -53,7 +54,7 @@ const Register = () => {
             openAlert("휴대폰번호를 입력해주세요");
             return;
         }
-        const isInsert = await dispatch(insertUser(user));
+        const isInsert = await dispatch(registerRequest(user));
         if (isInsert.error) {
             openAlert("이미 존재하는 아이디");
             return;

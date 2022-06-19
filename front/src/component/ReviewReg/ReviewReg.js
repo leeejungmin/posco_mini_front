@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Alert } from "reactstrap";
-import { insertReview } from "../../Store/reviewReg";
+// import { insertReview } from "../../Store/reviewReg";
+import { insertReview } from '../../Sagas/reviewReg';
 
 
 
@@ -14,16 +15,18 @@ const ReviewReg = () => {
     const[isSelectFail, setIsSelectFail] = useState(false);
     const[text, setText] = useState("");
 
-    const {id,location,name} = useSelector((state) => state.details.shopDetail.details.shop[0]);
-    
-
-
+    //***변경할것 ****
+    // back 부분 userId -> token으로 변경
+    // const {id,location,name} = useSelector((state) => state.details.shopDetail.details.shop[0]);
+    const { id } = useSelector((state) => state);
     console.log(id);
-    console.log(name);
-    console.log(location);
+    // console.log(name);
+    // console.log(location);
     const [reviewReg, setReviewReg] = useState({
-        userId:localStorage.getItem("id"),
-        shopId:id,
+        // userId:localStorage.getItem("id"),
+        // shopId:id,  // ***변경할것 **** shop state에서 받아주기 shopid값 받아서 그냥 넣어주기만 하면 됏음
+        userId: "",
+        shopId:"",
         rate:"",
         photo:"",
         content:""
@@ -82,10 +85,12 @@ const ReviewReg = () => {
         //     return;
         // }
         // 보낼때 
-        const insertReviews = await dispatch(insertReview(reviewReg)).unwrap();
-        navigate(`/detail/${id}`);
+        const insertReviews = await dispatch(insertReview(reviewReg));
+        // navigate(`/detail/${id}`);
 
     }
+
+    // ***변경할것 ****받아온값 식당명 shopId는 그냥 보내주고 location도 state에서 받아오기 
 
     return(
         <>
@@ -110,12 +115,22 @@ const ReviewReg = () => {
 
                                                 <div>
                                                     <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">식당명</label>
-                                                    <input type="text" id="form3Example4c"  onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={name} readOnly required/>
+                                                {/* <input type="text" id="form3Example4c"  onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={name} readOnly required/> */}
+                                                <input type="text" id="form3Example4c" name="userId" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="userId입력" required />
+                                                
+                                            </div>
+                                            
+                                                <div>
+                                                    <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">숍아이디</label>
+                                                {/* <input type="text" id="form3Example4c"  onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={name} readOnly required/> */}
+                                                <input type="text" id="form3Example4c" name="shopId" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="shopId입력" required />
+                                                
                                                 </div>
 
                                                 <div>
                                                     <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">위치</label>
-                                                    <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={location} readOnly required/>
+                                                {/* <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={location} readOnly required/> */}
+                                                <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="위치를 등록해주세요" required/>
                                                 </div>
                                                     
                                                     <div>
