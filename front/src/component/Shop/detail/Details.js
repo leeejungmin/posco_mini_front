@@ -53,6 +53,7 @@ const Details = ({ details, detailState }) => {
                                         <br></br>
                                         <br></br>
                                         <br></br>
+
                                         <div className="flex justify-content-around my-13">
                                             <button
                                                 data-mdb-ripple="true"
