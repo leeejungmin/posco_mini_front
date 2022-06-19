@@ -25,7 +25,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 
-export const loginRequestdata = (data) => {
+export const loginRequestAction = (data) => {
   // 로그인 요청하기
   console.log("reducer / loginRequestdata");
   console.log(data); 

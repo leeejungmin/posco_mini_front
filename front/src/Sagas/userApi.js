@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import {customAxios} from "../Http/customAxios";
 import { useDispatch, useSelector } from "react-redux";
 import { delay, put, fork, all, takeLatest, takeEvery, call } from "redux-saga/effects";
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_CHECK } from "./user";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_CHECK, LOGOUT, COUNT_REVIEW, SELECT_USERLIST, DELETE_USER } from "./user";
 
 
 function* Login(action) {
@@ -23,7 +23,7 @@ function* Login(action) {
 
 function* getUserById(users, id) {
   // const findUserById = yield call( users.find((user) => user.id === id);
-  const { data } = yield call(customAxios, "get",`/user/me`, action.data);
+  const { data } = yield call(customAxios, "get",`/user/me`, id);
   return data;
 };
 
