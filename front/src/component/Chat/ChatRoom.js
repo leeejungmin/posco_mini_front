@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { over } from "stompjs";
 import SockJS from "sockjs-client";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { countReview, selectUserlist } from "../../Store/user";
 
 var stompClient = null;
 const ChatRoom = () => {
@@ -9,10 +10,23 @@ const ChatRoom = () => {
     const [privateChats, setPrivateChats] = useState(new Map());
     const [publicChats, setPublicChats] = useState([]);
     const [tab, setTab] = useState("CHATROOM");
-    const state = useSelector((state) => state.users);
-    console.log("amos(state): ", state);
+
+    const userDetail = useSelector((state) => state.users);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        getUserlist();
+    }, []);
+
+    const getUserlist = async (e) => {
+        console.log(userDetail.me.id);
+        dispatch(selectUserlist(userDetail.me.id));
+        dispatch(countReview());
+    };
+
+    console.log("amos(이름): ", userDetail.me.name);
     const [userData, setUserData] = useState({
-        username: "",
+        username: userDetail.me.name,
         receivername: "",
         connected: false,
         message: "",
@@ -230,7 +244,7 @@ const ChatRoom = () => {
                 <div className="register">
                     <input
                         id="user-name"
-                        placeholder="Enter your name"
+                        placeholder={userDetail.me.name}
                         name="userName"
                         value={userData.username}
                         onChange={handleUsername}
