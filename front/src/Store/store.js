@@ -6,16 +6,33 @@ import reviewReg from './reviewReg';
 import details from './shopDetail';
 import mypages from './mypage';
 import partys from './party';
+import login from '../Sagas/user';
+import register from '../Sagas/register';
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "../Sagas/index";
+
+const sagaMiddleware = createSagaMiddleware();
+
 const reducer = combineReducers({
-    users,
-    shops,
-    partys,
-    reviewReg,
-    details,
-    mypages
+    register ,
+    login,
 });
-export default configureStore({
-    reducer,
-    devTools: true,
-    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware()],
-});
+// const reducer = combineReducers({
+//     users,
+//     shops,
+//     partys,
+//     reviewReg,
+//     details,
+//     mypages
+// });
+
+export const createStore = configureStore({
+    reducer: reducer,
+      // sagaMiddleware를 configureStore에 등록해줍니다.
+    middleware: [sagaMiddleware]
+  });
+  
+  // rootSaga를 실행해줍니다.
+  sagaMiddleware.run(rootSaga);
+
+export default createStore;

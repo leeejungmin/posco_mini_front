@@ -10,6 +10,16 @@ const Details = ({ details, detailState }) => {
     const onMoveReviewReg = (e) => {
         navigate(`/reviewReg`);
     };
+    const aaa =
+     [{ name: '한돈애짱구', location: 5, grade: "Good", image: "" },
+     { name: '숯부레짱구', location: 1,  grade: "Good", image: ""},
+     { name: '오늘통닭맹구', location: 2,  grade: "Good", image: ""},
+     { name: '초선과여포철수', location: 3,  grade: "Good", image: ""},
+     { name: '하나우동짱구', location: 4,  grade: "Good", image: ""},
+     { name: '숯부레유리', location: 1,  grade: "Good", image: ""},
+     { name: '오늘 통닭짱구', location: 2,  grade: "Good", image: ""},
+     { name: '숯부레유리', location: 1,  grade: "Good", image: ""},
+     ]
 
     return (
         <>
@@ -18,12 +28,13 @@ const Details = ({ details, detailState }) => {
                     <div className="row justify-content-center">
                         <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                             <p className="font-sans-kr text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> 식당 정보</p>
+                            
                             <div className="select-none rounded-md flex flex-1 items-center p-1 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 mt-3 border-mainYellow hover:shadow-2xl">
                                 <div className="mx-1 mx-md-4">
                                     <div className="font-sans-kr text-1xl font-medium ">
                                         {details.shop.map((v, index) => (
                                             <li className=" flex flex-row mb-2" key={index} name={v}>
-                                                <div className="">{v.name}</div>
+                                                <div className="">{v.name}
                                                 <br></br>
                                                 <div className="w-300 h-100 mb-2 border-gray-400 flex flex-row mb-8">
                                                     <img className="" src={`${IMG_PATH}${v.image}`} alt="myImg"></img>
@@ -31,7 +42,7 @@ const Details = ({ details, detailState }) => {
                                                 <br></br>
                                                 위치: {v.location}
                                                 <br></br>
-                                                평점: {v.grade}
+                                                평점: {v.grade}</div>
                                             </li>
                                         ))}
                                         <div className="flex justify-content-around my-13">

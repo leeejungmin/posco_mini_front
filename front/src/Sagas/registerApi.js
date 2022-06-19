@@ -1,32 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import {customAxios} from "../Http/customAxios";
 import { useDispatch, useSelector } from "react-redux";
+import { delay, put, fork, all, takeLatest, takeEvery, call } from "redux-saga/effects";
+import { REGISTER_REQUEST, REGISTER_SUCCESS } from "./register";
 
-export const initialState = {
-  logInLoading: false, // 로그인 시도중
-  logInDone: false,
-  logInError: null,
-  isLogin: "",
-  user: [],
-  //여기에서 계속 stats -> islogin을 받을 수 있음
-};
 
-// 이름 정의 해주기
-export const REGISTER_SUCCESS= "REGISTER_SUCCESS";
-
-put({type: REGISTER_SUCCESS})
-// export const insertUser = createAsyncThunk(INSERT_USER, async (user, thunkAPI) => {
-//     console.log("register reducer......................");
-//     const { users } = thunkAPI.getState().users;
-//     await postUser(users, user);
-//   });
-
-export const register = (data) => {
+function* register(action) {
+   
+    console.log("saga....register");
     
-    console.log("reducer...REGISTER");
-    console.log(data);
-    return {
+    const result = yield call(customAxios, "post",`/user/create`, action.data);
+    console.log("this is result ....." + result);
+    const user = action.data;
+
+    console.log(result);
+    yield put({
       type: REGISTER_SUCCESS,
-      data: data,
-    };
-  };
+      //isLogin: action.data.token ? true : false,
+      user: result.data, 
+    });
+}
+
+
+// 이벤트 리스너 같은 역할
+function* watchRegister() {
+    console.log("saga  watchLogin........");
+    yield takeLatest(REGISTER_REQUEST, register);
+  }
+  
+  export default watchRegister;
+  

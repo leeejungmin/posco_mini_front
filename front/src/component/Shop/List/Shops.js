@@ -9,7 +9,7 @@ const Shops = ({ shops, shopState }) => {
         navigate('/party');
     };
     const onMoveDetail = (valueid, e) => {
-        //리스트 하나 누르면 axios로 shop/detail 부르고 페이지 넘어가기
+
 
         navigate(`/detail/${valueid}`);
     };

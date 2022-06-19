@@ -4,10 +4,9 @@ import userOrigin from "../Store/user"
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "../Sagas";
 import shops from "../Store/shopslist";
+import register from "../Sagas/register";
 const reducer = combineReducers({
-  users,
-  shops,
-
+  register,
   });
 
 const sagaMiddleware = createSagaMiddleware();

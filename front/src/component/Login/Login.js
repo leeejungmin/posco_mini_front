@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Form,  } from "reactstrap";
-import { loginRequestAction } from "../../Sagas/userApi";
-import { login, loginCheck } from '../../Store/user'
+import { loginRequestAction } from "../../Sagas/user";
+
+//import { login, loginCheck } from '../../Store/user'
 
 
 const Login = () => {
@@ -14,7 +15,7 @@ const Login = () => {
         userId: "",
         password: "",
     });
-    const state = useSelector((state) => state.users.isLogin);
+    const state = useSelector((state) => state.isLogin);
     
     useEffect(() => {
         if (state) {
@@ -39,7 +40,8 @@ const Login = () => {
     }
     const onSubmit = async (e) => {
         e.preventDefault();
-        dispatch(login(user));
+        dispatch(loginRequestAction({ user }));
+        //dispatch(login(user));
     };
 
     const closeAlert = () => {
