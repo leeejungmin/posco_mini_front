@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import users from './user';
 import shops from './shopslist';
-import reviewReg from './reviewReg';
+
 import details from './shopDetail';
 import mypages from './mypage';
 import partys from './party';
@@ -11,6 +11,7 @@ import login from '../Sagas/user';
 import register from '../Sagas/register';
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "../Sagas/index";
+import reviewReg from '../Sagas/reviewReg';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +19,7 @@ const reducer = combineReducers({
     register ,
     login,
     shop,
+    reviewReg,
 });
 // const reducer = combineReducers({
 //     users,
