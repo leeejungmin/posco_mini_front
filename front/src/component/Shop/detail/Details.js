@@ -23,7 +23,7 @@ const Details = ({ details, detailState }) => {
                                     <div className="font-sans-kr text-1xl font-medium ">
                                         {details.shop.map((v, index) => (
                                             <li className=" flex flex-row mb-2" key={index} name={v}>
-                                                <div className="">{v.name}</div>
+                                                <div className="">{v.name}
                                                 <br></br>
                                                 <div className="w-300 h-100 mb-2 border-gray-400 flex flex-row mb-8">
                                                     <img className="" src={`${IMG_PATH}${v.image}`} alt="myImg"></img>
@@ -32,9 +32,12 @@ const Details = ({ details, detailState }) => {
                                                 위치: {v.location}
                                                 <br></br>
                                                 평점: {v.grade}
+                                                </div>
                                             </li>
                                         ))}
+                                        <br></br><br></br><br></br><br></br><br></br><br></br>
                                         <div className="flex justify-content-around my-13">
+                                            
                                             <button
                                                 data-mdb-ripple="true"
                                                 data-mdb-ripple-color="light"
