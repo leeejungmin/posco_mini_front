@@ -6,6 +6,7 @@ import reviewReg from './reviewReg';
 import details from './shopDetail';
 import mypages from './mypage';
 import partys from './party';
+import shop from '../Sagas/shop';
 import login from '../Sagas/user';
 import register from '../Sagas/register';
 import createSagaMiddleware from "redux-saga";
@@ -16,6 +17,7 @@ const sagaMiddleware = createSagaMiddleware();
 const reducer = combineReducers({
     register ,
     login,
+    shop,
 });
 // const reducer = combineReducers({
 //     users,

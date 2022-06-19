@@ -30,10 +30,7 @@ const Shops = ({ shops, shopState }) => {
                                 
                             </div>
 
-                            {shopState.loading ? (
-                                <Spinner>Loading...</Spinner>
-                            ) : (
-                                shops?.map((v, index) => (
+                            {shops && shops.map((v, index) => (
                                     <li className=" flex flex-row mb-2" key={index} name={v} onClick={(e) => onMoveDetail(v.id, e)}>
                                         <div className="h-40 select-none rounded-md flex flex-1 items-center p-1 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 mt-3 border-mainYellow hover:shadow-2xl">
                                             <div className="flex-3 pl-4 mr-4">
@@ -63,7 +60,7 @@ const Shops = ({ shops, shopState }) => {
                                         </div>
                                     </li>
                                 ))
-                            )}
+                            }
                         </div>
                     </div>
                 </div>
