@@ -44,13 +44,13 @@ const ChatRoom = () => {
     const onConnected = () => {
         setUserData({ ...userData, connected: true });
         stompClient.subscribe("/chatroom/public", onMessageReceived);
-        stompClient.subscribe("/user/" + userData.username + "/private", onPrivateMessage);
+        stompClient.subscribe("/user/" + userDetail.me.name + "/private", onPrivateMessage);
         userJoin();
     };
 
     const userJoin = () => {
         var chatMessage = {
-            senderName: userData.username,
+            senderName: userDetail.me.name,
             status: "JOIN",
         };
         console.log("amos(userJoin): ", JSON.stringify(chatMessage));
@@ -102,7 +102,7 @@ const ChatRoom = () => {
         // 문제 없음 =========================
         if (stompClient) {
             var chatMessage = {
-                senderName: userData.username,
+                senderName: userDetail.me.name,
                 message: userData.message,
                 status: "MESSAGE",
             };
@@ -114,13 +114,13 @@ const ChatRoom = () => {
     const sendPrivateValue = () => {
         if (stompClient) {
             var chatMessage = {
-                senderName: userData.username,
+                senderName: userDetail.me.name,
                 receiverName: tab,
                 message: userData.message,
                 status: "MESSAGE",
             };
 
-            if (userData.username !== tab) {
+            if (userDetail.me.name !== tab) {
                 privateChats.get(tab).push(chatMessage);
                 setPrivateChats(new Map(privateChats));
             }
@@ -171,15 +171,15 @@ const ChatRoom = () => {
                                 {publicChats.map((chat, index) => (
                                     <li
                                         className={`message ${
-                                            chat.senderName === userData.username && "self"
+                                            chat.senderName === userDetail.me.name && "self"
                                         }`}
                                         key={index}
                                     >
-                                        {chat.senderName !== userData.username && (
+                                        {chat.senderName !== userDetail.me.name && (
                                             <div className="avatar">{chat.senderName}</div>
                                         )}
                                         <div className="message-data">{chat.message}</div>
-                                        {chat.senderName === userData.username && (
+                                        {chat.senderName === userDetail.me.name && (
                                             <div className="avatar self">{chat.senderName}</div>
                                         )}
                                     </li>
@@ -194,8 +194,8 @@ const ChatRoom = () => {
                                     value={userData.message}
                                     onChange={handleMessage}
                                 />
-                                <button type="button" className="send-button" onClick={sendValue}>
-                                    send
+                                <button type="button" onClick={sendValue}>
+                                    전송하기
                                 </button>
                             </div>
                         </div>
@@ -206,15 +206,15 @@ const ChatRoom = () => {
                                 {[...privateChats.get(tab)].map((chat, index) => (
                                     <li
                                         className={`message ${
-                                            chat.senderName === userData.username && "self"
+                                            chat.senderName === userDetail.me.name && "self"
                                         }`}
                                         key={index}
                                     >
-                                        {chat.senderName !== userData.username && (
+                                        {chat.senderName !== userDetail.me.name && (
                                             <div className="avatar">{chat.senderName}</div>
                                         )}
                                         <div className="message-data">{chat.message}</div>
-                                        {chat.senderName === userData.username && (
+                                        {chat.senderName === userDetail.me.name && (
                                             <div className="avatar self">{chat.senderName}</div>
                                         )}
                                     </li>
@@ -246,12 +246,12 @@ const ChatRoom = () => {
                         id="user-name"
                         placeholder={userDetail.me.name}
                         name="userName"
-                        value={userData.username}
+                        value={userDetail.me.name}
                         onChange={handleUsername}
                         margin="normal"
                     />
                     <button type="button" onClick={registerUser}>
-                        connect
+                        참여하기
                     </button>
                 </div>
             )}
