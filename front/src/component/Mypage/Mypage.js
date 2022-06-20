@@ -89,13 +89,8 @@ const Mypage = () => {
                 로그아웃
               </button>
               <button
-<<<<<<< HEAD
-                class="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
-                type="button"
-=======
                 className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
                
->>>>>>> 4daaa7498206f5350fb9b52e2729f99f84698bb1
                 onClick={onUserDelete}
               >
                 회원탈퇴
