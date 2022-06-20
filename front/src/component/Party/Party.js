@@ -71,31 +71,46 @@ const ShopParty = ({partysPeople, partyState}) => {
      
                 return (
                     <>
-                        <div></div>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <div className="flex justify-left ">
-                            <p>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-                                ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-                            </p>
-                            <DateToday />
-                            <p>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
-                            <button onClick={onMovePrev}
-                                type="button"
-                                data-mdb-ripple="true"
-                                data-mdb-ripple-color="light"
-                                className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
-                            >뒤로가기</button>
-                        </div>
-                        <br></br>
-                        <br></br>
-                        <div className="2xl:container content-center 2xl:mx-auto">
-            
-                            <div className="flex justify-center ">
-            
-                                <div className="flex justify-between items-center p-9 bg-white rounded-2xl overflow-hidden shadow-lg border-mainYellow border-2">
+            <div></div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <div className="flex justify-left ">
+                <p>
+                    ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+                    ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+                </p>
+                <DateToday />
+                <p>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
+                <button
+                    onClick={onMoveChat}
+                    type="button"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                >
+                    오픈채팅방 참여하기
+                </button>
+                <p>ㅤㅤ</p>
+                <button
+                    onClick={onMovePrev}
+                    type="button"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                >
+                    뒤로가기
+                </button>
+            </div>
+            <br></br>
+            <br></br>
+            <div className="2x1:container content-center 2xl:mx-auto">
+                <div className="flex justify-center ">
+                    <div className="flex justify-between items-center p-9 bg-white rounded-2xl overflow-hidden shadow-lg border-mainYellow border-2">
+                        <div>
+                            <div className="">
+                                <div className="bg-white rounded-md ">
                                     <div>
                                         <h3 className="font-sans-kr text-mainblack text-2x3 text-blueGray-700">
                                             식사 참여자 현황
@@ -155,43 +170,47 @@ const ShopParty = ({partysPeople, partyState}) => {
                                                                 </th>
                                                         )
                                                         )} */}
-                                                            <tr>
-                                                                <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 text-blueGray-700 border border-solid border-blueGray-100">
-
-                                                                    {shopParty?.map((value, index) => 
-                                                                        value.shopId === 1? 
-                                                                        <tr>{value.name}</tr> : null
-                                                                    )}
-                                                                </td>
-                                                                {/* {value.shopid === 1 ? <span className="font-medium"> {aaa.aaadata[1].name} </span> : null} */}
-                                                                <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                     {shopParty?.map((value, index) => 
-                                                                        value.shopId === 2? 
-                                                                        <tr>{value.name}</tr> : null
-                                                                    )}
-                                                                </td>
-                                                                <td className="border-t-0 px-12 align-center border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                     {shopParty?.map((value, index) => 
-                                                                        value.shopId === 3? 
-                                                                        <tr>{value.name}</tr> : null
-                                                                    )}
-                                                                </td>
-                                                                <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                    {shopParty?.map((value, index) => 
-                                                                        value.shopId === 4? 
-                                                                        <tr>{value.name}</tr> : null
-                                                                    )}
-                                                                </td>
-                                                                <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                     {shopParty?.map((value, index) => 
-                                                                        value.shopId === 5? 
-                                                                        <tr>{value.name}</tr> : null
-                                                                    )}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <div className=" block w-full overflow-x-auto">
+                                                <tr>
+                                                    <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 text-blueGray-700 border border-solid border-blueGray-100">
+                                                        {shopParty?.map((value, index) =>
+                                                            value.shopId === 1 ? (
+                                                                <tr>{value.name}</tr>
+                                                            ) : null
+                                                        )}
+                                                    </td>
+                                                    {/* {value.shopid === 1 ? <span className="font-medium"> {shopParty?.shopParty?data[1].name} </span> : null} */}
+                                                    <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
+                                                        {shopParty?.map((value, index) =>
+                                                            value.shopId === 2 ? (
+                                                                <tr>{value.name}</tr>
+                                                            ) : null
+                                                        )}
+                                                    </td>
+                                                    <td className="border-t-0 px-12 align-center border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
+                                                        {shopParty?.map((value, index) =>
+                                                            value.shopId === 3 ? (
+                                                                <tr>{value.name}</tr>
+                                                            ) : null
+                                                        )}
+                                                    </td>
+                                                    <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
+                                                        {shopParty?.map((value, index) =>
+                                                            value.shopId === 4 ? (
+                                                                <tr>{value.name}</tr>
+                                                            ) : null
+                                                        )}
+                                                    </td>
+                                                    <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
+                                                        {shopParty?.map((value, index) =>
+                                                            value.shopId === 5 ? (
+                                                                <tr>{value.name}</tr>
+                                                            ) : null
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div className=" block w-full overflow-x-auto">
                                             <br></br>
                                             <br></br>
                                             <div className="flex justify-center ">
@@ -255,7 +274,10 @@ const ShopParty = ({partysPeople, partyState}) => {
                                 </div>
                             </div>
                         </div>
-               
+                    </div>
+                </div>
+            </div>
+
             <br></br>
         </>
     );
