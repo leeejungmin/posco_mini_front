@@ -7,12 +7,19 @@ import { partyPost } from "../../Store/party";
 //  import '../node_modules/react-vis/dist/style.css';
  import {XYPlot,DonutChart, RadialChart,MarkSeries, LineSeries} from 'react-vis';
 
-const ShopParty = ({partysPeople,partyState}) => {
+const ShopParty = ({partysPeople, partyState}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [shops,setshop] = useState("");
     const [data, setData] = useState({});
     const [shopId,setshopId] = useState("");
+
+    ////////////////
+    const shopParty = useSelector((state) => state.partys.partyUsers.partyusers);
+    console.log("amos(shopParty): ", shopParty);
+    
+    ////////////////
+    
     
     
     const state = useSelector((state) => state.users.myId);
@@ -50,11 +57,13 @@ const ShopParty = ({partysPeople,partyState}) => {
      { name: '숯부레유리', shopId: 1 },
      ]
 
-     const myData = [{ angle: 1, label: '숯부레', opacity: 0.2, style: { fontSize: 10 } },
-     { angle: 5, label: "오늘 통닭" },
-     { angle: 2, label: "초선과 여포" },
-     { angle: 2, label: "ㅤ하나 우동" },
-     { angle: 2, label: "한돈애" }
+     const myData = [
+     { angle: 10, label: '숯부레', opacity: 0.2, style: { fontSize: 10 } },
+     { angle: 6, label: "오늘 통닭" },
+     { angle: 6, label: "초선과 여포" },
+     { angle: 13, label: "ㅤ하나 우동" },
+     { angle: 0, label: "한돈애" },
+    
      ]
  
      
@@ -147,32 +156,33 @@ const ShopParty = ({partysPeople,partyState}) => {
                                                         )} */}
                                                             <tr>
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 text-blueGray-700 border border-solid border-blueGray-100">
-                                                                    {aaa.map((value, index) => 
+
+                                                                    {shopParty?.map((value, index) => 
                                                                         value.shopId === 1? 
                                                                         <tr>{value.name}</tr> : null
                                                                     )}
                                                                 </td>
                                                                 {/* {value.shopid === 1 ? <span className="font-medium"> {aaa.aaadata[1].name} </span> : null} */}
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                     {aaa.map((value, index) => 
+                                                                     {shopParty?.map((value, index) => 
                                                                         value.shopId === 2? 
                                                                         <tr>{value.name}</tr> : null
                                                                     )}
                                                                 </td>
                                                                 <td className="border-t-0 px-12 align-center border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                     {aaa.map((value, index) => 
+                                                                     {shopParty?.map((value, index) => 
                                                                         value.shopId === 3? 
                                                                         <tr>{value.name}</tr> : null
                                                                     )}
                                                                 </td>
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                    {aaa.map((value, index) => 
+                                                                    {shopParty?.map((value, index) => 
                                                                         value.shopId === 4? 
                                                                         <tr>{value.name}</tr> : null
                                                                     )}
                                                                 </td>
                                                                 <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                                     {aaa.map((value, index) => 
+                                                                     {shopParty?.map((value, index) => 
                                                                         value.shopId === 5? 
                                                                         <tr>{value.name}</tr> : null
                                                                     )}
