@@ -1,77 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {partyPostApi} from "./partyApi";
-
-
-const PARTY_REGISTER = "PARTYREGISTER";
-
+import { getPartyList } from "./partyApi";
 const initialState = {
-    partyUsers: {},
-    myId: localStorage.getItem("id"),
-    shopId: {},
-    me: {},
+    partys: {
+        myId: localStorage.getItem("id"),
+        list: {},
+        loading: false,
+        message: "",
+        shopId: "",
+    },
 };
 
-// export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI) => {
-//     console.log("This is loginCheck---"+localStorage.getItem("id"));
-//     const { users, myId } = thunkAPI.getState().users;
-//     if (myId) {
-//         const me = await getUserById(users, Number(myId));
-//         return me;
-//     } else if (myId === 0 || myId === "0") {
-//         const me = await getUserById(users, Number(myId));
-//         return me;
-//     }
-//     return;
-// });
+const SELECT_PARTY_LIST = "SELECT_PARTY_LIST";
 
+export const selectPartyList = createAsyncThunk(SELECT_PARTY_LIST, async (payload, thunkAPI) => {
+    const partyList = await getPartyList();
+    return partyList;
+});
 
-export const partyPost = createAsyncThunk(PARTY_REGISTER, async (payload, thunkAPI) => {
-    console.log("Party register reducer......................");
-    const { users,myId } = thunkAPI.getState().users;
-    
-    const resultload = {...payload,userId:myId, shopId:payload};
-    //const { myId } = thunkAPI.getState().partyPost;
-    const shopId =  await partyPostApi(resultload);
-    console.log("after axios  reducer......................"+ myId+ '.......' +shopId);
-    return shopId;
-  });
-  
-
-
-export const partyUsersSlice = createSlice({
-    name: "partyPost",
+export const ListSlice = createSlice({
+    name: "partys",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder
-            .addCase(partyPost.fulfilled, (state, { payload }) => {
-                const newshopload = {...state, shopId : 5};
-                //console.log("iside........."+ newshopload.shopId);
-                console.log("iside........."+ payload);
-                return {...state, partyUsers: payload};
-                // if (payload) {
-                //     return { ...state,  me: payload, shopId: 5};
-                // } else {
-                //     return { ...state, me: false };
-                // }
-            })
-            // .addCase(login.fulfilled, (state, { payload }) => {
-            //     if (payload.isLogin) {
-            //         console.log("this is payload after isLogin" + payload);
-            //         localStorage.setItem("id", payload.user.id);
-                    
-            //         return {
-            //             ...state,
-            //             isLogin: payload.login, //
-            //             me: payload.user,
-            //             myId: payload.user.id,
-            //         };
-            //     } else {
-            //         return { ...state, isLogin: false };
-            //     }
-            // })
-          
+        builder.addCase(selectPartyList.fulfilled, (state, { payload }) => {
+            const newPartyList = { ...state.partyList };
+            newPartyList.loading = false;
+            newPartyList.list = payload.partyusers;
+            return { ...state, partyList: newPartyList };
+        });
     },
 });
 
-export default partyUsersSlice.reducer;
+export default ListSlice.reducer;
