@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import {customAxios} from "../Http/customAxios";
+import {customAxios,customAxiosCount} from "../Http/customAxios";
 import { useDispatch, useSelector } from "react-redux";
 import { delay, put, fork, all, takeLatest, takeEvery, call } from "redux-saga/effects";
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_CHECK, LOGOUT, COUNT_REVIEW, SELECT_USERLIST, DELETE_USER } from "./user";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_CHECK, LOGOUT, COUNT_REVIEW, DELETE_USER, SELECT_USERLIST_REQUEST } from "./user";
 
 
 function* Login(action) {
@@ -17,15 +17,18 @@ function* Login(action) {
     yield put({
       type: LOGIN_SUCCESS,
       //isLogin: action.data.token ? true : false,
-      user: result.data, 
+      data: result.data, 
     });
-}
-
-function* getUserById(users, id) {
-  // const findUserById = yield call( users.find((user) => user.id === id);
-  const { data } = yield call(customAxios, "get",`/user/me`, id);
-  return data;
 };
+
+function* selectList(){
+  console.log("saga user list");
+
+};
+
+
+
+
 
 function* deleteUserApi(){
   const { status } = yield call( customAxios, "delete","/user/",null);
@@ -36,10 +39,7 @@ return status;
 
 };
 
-function* getcountReview (){
-  const countRes = yield call( customAxios,"get", "/review/count");
-  return countRes;
-}
+
 function* logoutApi (userId){
     return true;
 };
@@ -48,8 +48,10 @@ function* watchLogin() {
     console.log("saga  watchLogin........");
     yield takeLatest(LOGIN_REQUEST, Login);
     yield takeLatest(LOGOUT, logoutApi);
-    yield takeLatest(SELECT_USERLIST, getUserById);
-    yield takeLatest(COUNT_REVIEW, getcountReview);
+    yield takeLatest(DELETE_USER, deleteUserApi);
+    yield takeLatest(LOGOUT, logoutApi);
+    yield takeLatest(LOGOUT, logoutApi);
+    yield takeLatest(SELECT_USERLIST_REQUEST, selectList);
   }
   
   export default watchLogin;
