@@ -1,20 +1,25 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { loginCheck } from "../Sagas/userApi";
+import { loginCheck } from "../Sagas/user";
 
 const AuthRouter = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+
+    const state = useSelector((state) => state);
     useEffect(() => {
         loginCheckFunc();
-    },[]);
+        const isLogin = localStorage.getItem("token")? true : false;
+        isLogin? navigate("/") : navigate("/login");
+    },[state]);
     const loginCheckFunc = async () => {
         const tokenc =  localStorage.getItem("token");
         const isLogin = tokenc? true : false;
+        
         //console.log("reducer / logincheck..............."+isLogin);
-        isLogin ? toGo() : toGo();
+        isLogin ? toGo() : toHome();
     };
     const toHome = () => {
         const from =

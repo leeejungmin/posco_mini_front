@@ -7,13 +7,18 @@ import { partyPost } from "../../Store/party";
 //  import '../node_modules/react-vis/dist/style.css';
 import { XYPlot, DonutChart, RadialChart, MarkSeries, LineSeries } from "react-vis";
 
-const ShopParty = ({ partysPeople, partyState }) => {
+const ShopParty = ({partysPeople, partyState}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [shops, setshop] = useState("");
     const [data, setData] = useState({});
-    const [shopId, setshopId] = useState("");
-
+    const [shopId,setshopId] = useState("");
+    const [counts,setCounts] = useState(0);
+    const [count, setCount] = useState(0);
+    ////////////////
+    const shopParty = useSelector((state) => state.partys.partyUsers.partyusers);
+    console.log("amos(shopParty): ", shopParty);
+ 
     const state = useSelector((state) => state.users.myId);
     const statePartyUser = useSelector((state) => state.partys.partyUsers.partyusers);
     useEffect(() => {
@@ -50,17 +55,55 @@ const ShopParty = ({ partysPeople, partyState }) => {
         { name: "오늘 통닭짱구", shopId: 2 },
         { name: "숯부레유리", shopId: 1 },
     ];
+    // const count_aaa = () => {aaa.map((item) => item.shopId ===1? count = count+1
+        
+    //     )
+    // }
+    const count_angle = () => {aaa.filter(item => item.shopId === 1).map(item => {
+        setCounts(counts => counts +1);
+        console.log(counts);
+        return(
+            <>
+            <div>{item.name}</div>
+            <div>{counts}</div>
+            </>
+            
+        )
+        
+    })  }
 
-    const myData = [
-        { angle: 1, label: "숯부레", opacity: 0.2, style: { fontSize: 10 } },
-        { angle: 5, label: "오늘 통닭" },
-        { angle: 2, label: "초선과 여포" },
-        { angle: 2, label: "ㅤ하나 우동" },
-        { angle: 2, label: "한돈애" },
-    ];
+    console.log("count_..........."+count_angle);
+     const myData = [
+     { angle: 10, label: '숯부레', opacity: 0.2, style: { fontSize: 10 } },
+     { angle: 6, label: "오늘 통닭" },
+     { angle: 6, label: "초선과 여포" },
+     { angle: 13, label: "ㅤ하나 우동" },
+     { angle: 0, label: "한돈애" },
+    
+     ]
 
-    return (
-        <>
+     function arrCount(arrParam, str, property, data) {
+        
+        
+        
+        
+        arrParam.map((item,idx) => {
+          if (item[property] === idx-1)
+            count[idx-1]++;
+            data[0]['angle'] = count;
+            
+        });
+
+       
+        return count;
+      }
+        
+      console.log(`count : ${arrCount(aaa, 1, 'shopId')}`);
+      console.log(`here is check point...... ${myData[0]['label']}`);
+      
+
+                return (
+                    <>
             <div></div>
             <br></br>
             <br></br>
@@ -71,6 +114,7 @@ const ShopParty = ({ partysPeople, partyState }) => {
                     ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                     ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                 </p>
+                <count_angle></count_angle>
                 <DateToday />
                 <p>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
                 <button
@@ -95,7 +139,7 @@ const ShopParty = ({ partysPeople, partyState }) => {
             </div>
             <br></br>
             <br></br>
-            <div className="2xl:container content-center 2xl:mx-auto">
+            <div className="2x1:container content-center 2xl:mx-auto">
                 <div className="flex justify-center ">
                     <div className="flex justify-between items-center p-9 bg-white rounded-2xl overflow-hidden shadow-lg border-mainYellow border-2">
                         <div>
@@ -150,6 +194,12 @@ const ShopParty = ({ partysPeople, partyState }) => {
                                             </thead>
                                             {/*value.shop participate name*/}
                                             <tbody>
+                                                {/* {aaa?.map((v,idx) =>
+
+                                                    v.shopId === 1? (
+                                                        setCounts(counts+1)
+                                                    <div> {v.shopId} </div>) : null
+                                                    )} */}
                                                 {/* {partyState.loading?(
                                                    
                                                             <Spinner>Loading...</Spinner>
@@ -162,36 +212,36 @@ const ShopParty = ({ partysPeople, partyState }) => {
                                                         )} */}
                                                 <tr>
                                                     <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 text-blueGray-700 border border-solid border-blueGray-100">
-                                                        {aaa.map((value, index) =>
+                                                        {shopParty?.map((value, index) =>
                                                             value.shopId === 1 ? (
                                                                 <tr>{value.name}</tr>
                                                             ) : null
                                                         )}
                                                     </td>
-                                                    {/* {value.shopid === 1 ? <span className="font-medium"> {aaa.aaadata[1].name} </span> : null} */}
+                                                    {/* {value.shopid === 1 ? <span className="font-medium"> {shopParty?.shopParty?data[1].name} </span> : null} */}
                                                     <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                        {aaa.map((value, index) =>
+                                                        {shopParty?.map((value, index) =>
                                                             value.shopId === 2 ? (
                                                                 <tr>{value.name}</tr>
                                                             ) : null
                                                         )}
                                                     </td>
                                                     <td className="border-t-0 px-12 align-center border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                        {aaa.map((value, index) =>
+                                                        {shopParty?.map((value, index) =>
                                                             value.shopId === 3 ? (
                                                                 <tr>{value.name}</tr>
                                                             ) : null
                                                         )}
                                                     </td>
                                                     <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                        {aaa.map((value, index) =>
+                                                        {shopParty?.map((value, index) =>
                                                             value.shopId === 4 ? (
                                                                 <tr>{value.name}</tr>
                                                             ) : null
                                                         )}
                                                     </td>
                                                     <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
-                                                        {aaa.map((value, index) =>
+                                                        {shopParty?.map((value, index) =>
                                                             value.shopId === 5 ? (
                                                                 <tr>{value.name}</tr>
                                                             ) : null

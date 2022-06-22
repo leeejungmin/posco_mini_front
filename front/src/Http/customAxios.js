@@ -16,6 +16,21 @@ export const customAxios = async (method, url, data) => {
 
 };
 
+export const customAxiosCount = async (method, url) => {
+    
+    const response = await axios({
+        method,
+        url,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+    console.log("............."+response)
+    return response;
+
+};
+
+
 export const customAxiosList = async (method, url, data) => {
 
     const response = await axios({

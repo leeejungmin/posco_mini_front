@@ -4,13 +4,6 @@ import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postU
 
 
 
-<<<<<<< HEAD
-  const initialState = {
-    shopList: {
-        shops: [],
-        loading: false,
-        message: '',
-=======
 //   const initialState = {
 //     shopList: {
 //         shops: [],
@@ -33,25 +26,12 @@ import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postU
         loading: false,
         message: '',
         shopId: '',
->>>>>>> 62a46dbfdb9d6983b13b820d3157d7dc5ea1bb05
     },
   };
   
 
   export const SHOP_SUCCESS= "SHOP_SUCCESS";
   export const SHOP_REQUEST= "SHOP_REQUEST";
-<<<<<<< HEAD
-  
-  
-
-  export const selectShopRequest = (data) => {
-    const shopList = await getShopList();
-    console.log("reducer / loginRequestAction");
-    console.log(data);
-    return {
-      type: SHOP_REQUEST,
-      data: shopList,
-=======
   export const SHOP_DETAIL_REQUEST= "SHOP_DETAIL_REQUEST";
   export const SHOP_DETAIL_SUCCESS= "SHOP_DETAIL_SUCCESS";
   
@@ -74,32 +54,12 @@ import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postU
     return {
       type: SHOP_DETAIL_REQUEST,
       data: data,
->>>>>>> 62a46dbfdb9d6983b13b820d3157d7dc5ea1bb05
     };
   };
 
 export const shopSlice = createSlice({
     name: "shopPost",
     initialState,
-<<<<<<< HEAD
-    reducers: {
-        
-        SHOP_REQUEST: (state) => {
-            console.log("SHOP REQUEST slice...");
-            state.isLoading = true;
-            state.data = state.data;
-          },
-
-        SHOP_SUCCESS: (state, action) => {
-        console.log("SHOP success slice...");
-        state.isLoading = false;
-        state.data = action.payload;
-        },
-
-    },
-    
-});
-=======
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -138,6 +98,5 @@ export const shopSlice = createSlice({
     },
     
 );
->>>>>>> 62a46dbfdb9d6983b13b820d3157d7dc5ea1bb05
 
 export default shopSlice.reducer;
