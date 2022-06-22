@@ -13,15 +13,12 @@ const ShopParty = ({partysPeople, partyState}) => {
     const [shops, setshop] = useState("");
     const [data, setData] = useState({});
     const [shopId,setshopId] = useState("");
-
+    const [counts,setCounts] = useState(0);
+    const [count, setCount] = useState(0);
     ////////////////
     const shopParty = useSelector((state) => state.partys.partyUsers.partyusers);
     console.log("amos(shopParty): ", shopParty);
-    
-    ////////////////
-    
-    
-    
+ 
     const state = useSelector((state) => state.users.myId);
     const statePartyUser = useSelector((state) => state.partys.partyUsers.partyusers);
     useEffect(() => {
@@ -58,7 +55,24 @@ const ShopParty = ({partysPeople, partyState}) => {
         { name: "오늘 통닭짱구", shopId: 2 },
         { name: "숯부레유리", shopId: 1 },
     ];
+    // const count_aaa = () => {aaa.map((item) => item.shopId ===1? count = count+1
+        
+    //     )
+    // }
+    const count_angle = () => {aaa.filter(item => item.shopId === 1).map(item => {
+        setCounts(counts => counts +1);
+        console.log(counts);
+        return(
+            <>
+            <div>{item.name}</div>
+            <div>{counts}</div>
+            </>
+            
+        )
+        
+    })  }
 
+    console.log("count_..........."+count_angle);
      const myData = [
      { angle: 10, label: '숯부레', opacity: 0.2, style: { fontSize: 10 } },
      { angle: 6, label: "오늘 통닭" },
@@ -67,8 +81,27 @@ const ShopParty = ({partysPeople, partyState}) => {
      { angle: 0, label: "한돈애" },
     
      ]
- 
-     
+
+     function arrCount(arrParam, str, property, data) {
+        
+        
+        
+        
+        arrParam.map((item,idx) => {
+          if (item[property] === idx-1)
+            count[idx-1]++;
+            data[0]['angle'] = count;
+            
+        });
+
+       
+        return count;
+      }
+        
+      console.log(`count : ${arrCount(aaa, 1, 'shopId')}`);
+      console.log(`here is check point...... ${myData[0]['label']}`);
+      
+
                 return (
                     <>
             <div></div>
@@ -81,6 +114,7 @@ const ShopParty = ({partysPeople, partyState}) => {
                     ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                     ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                 </p>
+                <count_angle></count_angle>
                 <DateToday />
                 <p>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
                 <button
@@ -160,6 +194,12 @@ const ShopParty = ({partysPeople, partyState}) => {
                                             </thead>
                                             {/*value.shop participate name*/}
                                             <tbody>
+                                                {/* {aaa?.map((v,idx) =>
+
+                                                    v.shopId === 1? (
+                                                        setCounts(counts+1)
+                                                    <div> {v.shopId} </div>) : null
+                                                    )} */}
                                                 {/* {partyState.loading?(
                                                    
                                                             <Spinner>Loading...</Spinner>
