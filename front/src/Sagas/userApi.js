@@ -10,10 +10,8 @@ function* Login(action) {
     console.log("saga....Login");
     
     const result = yield call(customAxios, "post",`/user/login`, action.data);
-    console.log("this is result ....." + result);
+   
     const user = action.data;
-
-    console.log(result);
     yield put({
       type: LOGIN_SUCCESS,
       //isLogin: action.data.token ? true : false,
@@ -25,9 +23,6 @@ function* selectList(){
   console.log("saga user list");
 
 };
-
-
-
 
 
 function* deleteUserApi(){

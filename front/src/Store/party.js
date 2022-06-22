@@ -11,19 +11,6 @@ const initialState = {
     me: {},
 };
 
-// export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI) => {
-//     console.log("This is loginCheck---"+localStorage.getItem("id"));
-//     const { users, myId } = thunkAPI.getState().users;
-//     if (myId) {
-//         const me = await getUserById(users, Number(myId));
-//         return me;
-//     } else if (myId === 0 || myId === "0") {
-//         const me = await getUserById(users, Number(myId));
-//         return me;
-//     }
-//     return;
-// });
-
 
 export const partyPost = createAsyncThunk(PARTY_REGISTER, async (payload, thunkAPI) => {
     console.log("Party register reducer......................");

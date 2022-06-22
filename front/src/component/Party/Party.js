@@ -3,8 +3,7 @@ import DateToday from "./DateToday";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "reactstrap";
-import { partyPost } from "../../Store/party";
-//  import '../node_modules/react-vis/dist/style.css';
+import { partyList } from "../../Sagas/party";
 import { XYPlot, DonutChart, RadialChart, MarkSeries, LineSeries } from "react-vis";
 
 const ShopParty = ({partysPeople, partyState}) => {
@@ -16,11 +15,9 @@ const ShopParty = ({partysPeople, partyState}) => {
     const [counts,setCounts] = useState(0);
     const [count, setCount] = useState(0);
     ////////////////
-    const shopParty = useSelector((state) => state.partys.partyUsers.partyusers);
-    console.log("amos(shopParty): ", shopParty);
- 
-    const state = useSelector((state) => state.users.myId);
-    const statePartyUser = useSelector((state) => state.partys.partyUsers.partyusers);
+    const shopParty = useSelector((state) => state.party.partyUsers.partyusers);
+    const state = useSelector((state) => state.login.myId);
+    const statePartyUser = useSelector((state) => state.party.partyUsers.partyusers);
     useEffect(() => {
         //    // console.log('Here Party............'+statePartyUser);
         //     const partyData = statePartyUser.map((party, idx) => {
@@ -37,7 +34,7 @@ const ShopParty = ({partysPeople, partyState}) => {
         navigate("/chat");
     };
     const onClickEvent = () => {
-        dispatch(partyPost(shopId));
+        dispatch(partyList(shopId));
     };
     const onChangeE = (e) => {
         const v = e.target.value;
@@ -82,24 +79,21 @@ const ShopParty = ({partysPeople, partyState}) => {
     
      ]
 
-     function arrCount(arrParam, str, property, data) {
+    //  function arrCount(arrParam, str, property, data) {
         
-        
-        
-        
-        arrParam.map((item,idx) => {
-          if (item[property] === idx-1)
-            count[idx-1]++;
-            data[0]['angle'] = count;
+    //     arrParam.map((item,idx) => {
+    //       if (item[property] === idx-1)
+    //         count[idx-1]++;
+    //         data[0]['angle'] = count;
             
-        });
+    //     });
 
        
-        return count;
-      }
+    //     return count;
+    //   }
         
-      console.log(`count : ${arrCount(aaa, 1, 'shopId')}`);
-      console.log(`here is check point...... ${myData[0]['label']}`);
+    //   console.log(`count : ${arrCount(aaa, 1, 'shopId')}`);
+    //   console.log(`here is check point...... ${myData[0]['label']}`);
       
 
                 return (

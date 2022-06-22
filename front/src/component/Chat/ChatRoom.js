@@ -11,11 +11,11 @@ const ChatRoom = () => {
     const [publicChats, setPublicChats] = useState([]);
     const [tab, setTab] = useState("CHATROOM");
 
-    const userDetail = useSelector((state) => state.users);
+    const userDetail = useSelector((state) => state.login);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getUserlist();
+       // getUserlist();
     }, []);
 
     const getUserlist = async (e) => {

@@ -5,12 +5,12 @@ import Shops from "./Shops";
 
 const ShopList =()=>{
 	
-	const shopList = useSelector((state)=>state.shopList);
+	const shopList = useSelector((state)=>state.shop.shopList);
 	const dispatch = useDispatch();
 	const getShoplist = () =>{
 		dispatch(shopRequest());
 	};
-	
+	console.log("this is shplsit......"+shopList);
 	
 	useEffect(()=>{
 		getShoplist();

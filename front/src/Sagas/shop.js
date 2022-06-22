@@ -19,10 +19,8 @@ import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postU
     message: '',
     
     shopDetail: {
-        details: {
-            review: [],
-            shop: [],
-        },
+        review: [],
+        shop: [],
         loading: false,
         message: '',
         shopId: '',
@@ -49,11 +47,11 @@ import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postU
 
   export const shopDetailRequest = (data) => {
     
-    console.log("reducer / shopDetailRequest");
-    console.log(data);
+    console.log("reducer / shopDetailRequest......"+data);
+    console.log(data.id);
     return {
       type: SHOP_DETAIL_REQUEST,
-      data: data,
+      data: data.id,
     };
   };
 
@@ -70,31 +68,10 @@ export const shopSlice = createSlice({
         
         .addCase(SHOP_DETAIL_SUCCESS, (state, { data }) => {
             console.log("SHOP SUCCESS slice..."+ data);
-            const newShopDetail = { ...state.shopDetail };
-            newShopDetail.loading = false;
-            newShopDetail.details = data;
-            return { ...state, isLoading: true, shopList: newShopDetail };
+            return { ...state,  ShopDetail: data };
         });
     },
-        
-
-        // SHOP_SUCCESS: (state, action) => {
-        // console.log("SHOP success slice...");
-        // state.isLoading = false;
-        // state.data = action.payload;
-        // },
-
-        // SHOP_DETAIL_REQUEST: (state) => {
-        //     console.log("SHOP DETAIL REQUEST slice...");
-        //     state.isLoading = true;
-        //     state.data = state.data;
-        //   },
-
-        // SHOP_DETAIL_SUCCESS: (state, action) => {
-        // console.log("SHOP DETAIL success slice...");
-        // state.isLoading = false;
-        // state.data = action.payload;
-        // },
+      
     },
     
 );

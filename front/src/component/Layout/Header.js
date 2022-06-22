@@ -15,7 +15,7 @@ const Header = () => {
         navigate('/mypage');
     };
 
-    const state = useSelector((state) => state);
+    const state = useSelector((state) => state.login);
 
     useEffect(() => {
         showMypage();

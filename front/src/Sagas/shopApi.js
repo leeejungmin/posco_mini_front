@@ -11,7 +11,6 @@ function* getShopList(action) {
         console.log(response);
         yield put({
             type: SHOP_SUCCESS,
-            //isLogin: action.data.token ? true : false,
             data: response, 
           });
     } catch (error) {
@@ -19,23 +18,21 @@ function* getShopList(action) {
     }
 }
 
-function* getShopDetail(shopId) {
+function* getShopDetail(action) {
    
-    try {
-        const response = yield call(customAxiosList,'get', `/shop/detail/${shopId}`, null);
-        console.log(response);
-        yield put({
-            type: SHOP_DETAIL_SUCCESS,
-            //isLogin: action.data.token ? true : false,
-            data: response, 
-          });
-    } catch (error) {
-        throw error;
-    }
+    
+   
+    const id = action.data;
+    const response = yield call(customAxiosList,'post', `/shop/detail/${id}`, null);
+    console.log("getShopaxios........"+response);
+    yield put({
+        type: SHOP_DETAIL_SUCCESS,
+        data: response, 
+        });
+    
 }
 
 function* watchShop() {
-    console.log("saga  watchLogin........");
     yield takeLatest(SHOP_REQUEST, getShopList);
     yield takeLatest(SHOP_DETAIL_REQUEST, getShopDetail)
   }

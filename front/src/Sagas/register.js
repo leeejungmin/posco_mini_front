@@ -5,8 +5,11 @@ import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postU
 
 
   const initialState = {
-    isLogin: false, 
-    data: [],
+    users: "",
+    myId: localStorage.getItem("id"),
+    isLogin: localStorage.getItem("id") === undefined ? true : false,
+    me: {},
+    count:"",
   };
   
 
@@ -28,20 +31,14 @@ import {deleteUserApi,  getcountReview,  getUserById, loginApi, logoutApi, postU
 export const registerSlice = createSlice({
     name: "registerPost",
     initialState,
-    reducers: {
-        
-        REGISTER_REQUEST: (state) => {
-            console.log("register REQUEST slice...");
-            state.isLoading = true;
-            state.data = state.data;
-          },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+          .addCase(REGISTER_SUCCESS, (state, { data }) => {
+                  return { ...state, users: data };
 
-        REGISTER_SUCCESS: (state, action) => {
-        console.log("register success slice...");
-        state.isLoading = false;
-        state.data = action.payload;
-        },
-
+          }
+          )
     },
     
 });

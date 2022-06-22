@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { selectShopDetail } from '../../../Store/shopDetail';
+import { shopDetailRequest } from '../../../Sagas/shop';
 import Details from './Details';
-
 const ShopDetail = () => {
-    const shopDetail = useSelector((state) => state.details.shopDetail);
+    const shopDetail = useSelector((state) => state.shop.shopDetail);
     const shopId = useParams();
-    // console.log('Selected ShopId: ', shopId); //2
-
     const dispatch = useDispatch();
     const getShopDetail = () => {
-        dispatch(selectShopDetail(shopId));
+        dispatch(shopDetailRequest(shopId));
     };
 
     useEffect(() => {
@@ -20,7 +17,7 @@ const ShopDetail = () => {
 
     return (
         <div>
-            <Details details={shopDetail.details} detailState={shopDetail}></Details>
+            <Details shop={shopDetail.shop} review={shopDetail.review}></Details>
         </div>
     );
 };

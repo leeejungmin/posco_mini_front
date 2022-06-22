@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectShoplist } from "../../Store/shopslist";
+import { partyList } from "../../Sagas/party";
 import Partys from "./Party";
 
-const ShopList =()=>{
+export const partyaction =()=>{
 	const partyList = useSelector((state)=>state);
 	const dispatch = useDispatch();
 	const getPartylist = () => {
-		dispatch(partyPost());
+		dispatch(partyList());
 		console.log(partyList);
 	};
 	console.log(shopList);
@@ -25,4 +25,4 @@ const ShopList =()=>{
     );
 }
 
-export default Party;
+export default partyaction;

@@ -11,14 +11,13 @@ const AuthRouter = () => {
     const state = useSelector((state) => state);
     useEffect(() => {
         loginCheckFunc();
-        const isLogin = localStorage.getItem("token")? true : false;
-        isLogin? navigate("/") : navigate("/login");
+        // const isLogin = localStorage.getItem("token")? true : false;
+        // isLogin? navigate("/") : navigate("/login");
     },[state]);
     const loginCheckFunc = async () => {
         const tokenc =  localStorage.getItem("token");
         const isLogin = tokenc? true : false;
         
-        //console.log("reducer / logincheck..............."+isLogin);
         isLogin ? toGo() : toHome();
     };
     const toHome = () => {
