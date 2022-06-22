@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { loginCheck } from "../Store/user";
+import { loginCheck } from "../Sagas/userApi";
 
 const AuthRouter = () => {
     const dispatch = useDispatch();
@@ -9,10 +9,12 @@ const AuthRouter = () => {
     const location = useLocation();
     useEffect(() => {
         loginCheckFunc();
-    }, []);
+    },[]);
     const loginCheckFunc = async () => {
-        const isLogin = await dispatch(loginCheck()).unwrap();
-        isLogin ? toGo() : toHome();
+        const tokenc =  localStorage.getItem("token");
+        const isLogin = tokenc? true : false;
+        //console.log("reducer / logincheck..............."+isLogin);
+        isLogin ? toGo() : toGo();
     };
     const toHome = () => {
         const from =
@@ -23,6 +25,7 @@ const AuthRouter = () => {
     };
     const toGo = () => {
         const from = location.pathname || "/";
+        //navigate(from === "/login" || from === "/register" ? "/" : from);
         navigate(from === "/login" || from === "/register" ? "/" : from);
     };
     return <></>;
