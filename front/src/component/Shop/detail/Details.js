@@ -4,7 +4,8 @@ import { IMG_PATH } from "../../../Http/customAxios";
 
 const Details = ({ shop, review }) => {
     const navigate = useNavigate();
-
+    console.log(shop);
+    console.log(review);
     const onMoveReviewReg = (e) => {
         navigate(`/reviewReg`);
     };

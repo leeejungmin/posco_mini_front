@@ -62,10 +62,10 @@ export const deleteUser = async (users, id) => {
 };
 
 export const getUserById = async ( id) => {
-  // const findUserById = await users.find((user) => user.id === id);
+ 
   console.log("reducer / getUserById");
   console.log(id);
-  // const { data } = await customAxios("get", `/user/${id}`);
+  
   return {
     type: SELECT_USERLIST_REQUEST,
   }
