@@ -17,16 +17,16 @@ const ReviewReg = () => {
 
     //***변경할것 ****
     // back 부분 userId -> token으로 변경
-    // const {id,location,name} = useSelector((state) => state.details.shopDetail.details.shop[0]);
-    const { id } = useSelector((state) => state);
-    console.log(id);
-    // console.log(name);
-    // console.log(location);
+    const {id,location,name} = useSelector((state) => state.shop.shopDetail.shop[0]);
+    // const { res } = useSelector((state) => state.shop.shopDetail);
+    // console.log("............");
+    console.log(name);
+    console.log(location);
+    console.log(localStorage.getItem("id"));
     const [reviewReg, setReviewReg] = useState({
-        // userId:localStorage.getItem("id"),
-        // shopId:id,  // ***변경할것 **** shop state에서 받아주기 shopid값 받아서 그냥 넣어주기만 하면 됏음
-        userId: "",
-        shopId:"",
+        userId:localStorage.getItem("id"),
+        shopId:id,  // ***변경할것 **** shop state에서 받아주기 shopid값 받아서 그냥 넣어주기만 하면 됏음
+        name:name,
         rate:"",
         photo:"",
         content:""
@@ -86,7 +86,7 @@ const ReviewReg = () => {
         // }
         // 보낼때 
         const insertReviews = await dispatch(insertReview(reviewReg));
-        // navigate(`/detail/${id}`);
+        navigate(`/detail/${id}`);
 
     }
 
@@ -110,27 +110,22 @@ const ReviewReg = () => {
                                     {/* 보내줄때 shopId만 빼서 보내주기 */}
                                     <div class="max-w-2xl mx-auto bg-white p-16">
 
-                                        <div>
+                                            <div>
                                             
 
                                                 <div>
                                                     <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">식당명</label>
-                                                {/* <input type="text" id="form3Example4c"  onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={name} readOnly required/> */}
-                                                <input type="text" id="form3Example4c" name="userId" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="userId입력" required />
+                                                <input type="text" id="form3Example4c"  onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={name} readOnly required/>
+                                                {/* <input type="text" id="form3Example4c" name="userId" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="userId입력" required /> */}
                                                 
                                             </div>
                                             
-                                                <div>
-                                                    <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">숍아이디</label>
-                                                {/* <input type="text" id="form3Example4c"  onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={name} readOnly required/> */}
-                                                <input type="text" id="form3Example4c" name="shopId" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="shopId입력" required />
                                                 
-                                                </div>
 
                                                 <div>
                                                     <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">위치</label>
-                                                {/* <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={location} readOnly required/> */}
-                                                <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="위치를 등록해주세요" required/>
+                                                <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={location} readOnly required/>
+                                                {/* <input type="text" id="form3Example4c" name="location" onChange={(e) => onChangeHandler(e)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="위치를 등록해주세요" required/> */}
                                                 </div>
                                                     
                                                     <div>
@@ -175,8 +170,8 @@ const ReviewReg = () => {
                                             <br></br><br></br>
                                                                         <div className="flex justify-center">
                                                                             <button 
-                                                                                // onClick={onSubmitReview}
-                                                                                type={"submit"}
+                                                                                onClick={onSubmitReview}
+                                                                                // type={"submit"}
                                                                                 data-mdb-ripple="true"
                                                                                 data-mdb-ripple-color="light"
                                                                                 className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
