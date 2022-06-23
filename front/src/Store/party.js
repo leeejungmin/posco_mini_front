@@ -42,22 +42,7 @@ export const partyUsersSlice = createSlice({
                 //     return { ...state, me: false };
                 // }
             })
-            // .addCase(login.fulfilled, (state, { payload }) => {
-            //     if (payload.isLogin) {
-            //         console.log("this is payload after isLogin" + payload);
-            //         localStorage.setItem("id", payload.user.id);
-                    
-            //         return {
-            //             ...state,
-            //             isLogin: payload.login, //
-            //             me: payload.user,
-            //             myId: payload.user.id,
-            //         };
-            //     } else {
-            //         return { ...state, isLogin: false };
-            //     }
-            // })
-          
+                  
     },
 });
 
