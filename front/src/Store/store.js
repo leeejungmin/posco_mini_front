@@ -12,7 +12,7 @@ const reducer = combineReducers({
     partys,
     reviewReg,
     details,
-    mypages
+    mypages,
 });
 export default configureStore({
     reducer,
