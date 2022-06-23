@@ -68,7 +68,7 @@ export const shopSlice = createSlice({
         
         .addCase(SHOP_DETAIL_SUCCESS, (state, { data }) => {
             console.log("SHOP SUCCESS slice..."+ data);
-            return { ...state,  ShopDetail: data };
+            return { ...state,  shopDetail: data };
         });
     },
       

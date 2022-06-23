@@ -4,11 +4,12 @@ import { useParams } from 'react-router';
 import { shopDetailRequest } from '../../../Sagas/shop';
 import Details from './Details';
 const ShopDetail = () => {
+
     useEffect(() => {
         console.log("useEffect.......shopdetail")
         getShopDetail();
     },[]);
-    const shopDetail = useSelector((state) => state.shop.ShopDetail);
+    const shopDetail = useSelector((state) => state.shop.shopDetail);
     console.log("shopId/k///////////////////",shopDetail)
     const shopId = useParams();
     const dispatch = useDispatch();
