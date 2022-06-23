@@ -4,7 +4,7 @@ import users from './user';
 import shops from './shopslist';
 
 import details from './shopDetail';
-import mypages from './mypage';
+
 import partys from './party';
 import shop from '../Sagas/shop';
 import login from '../Sagas/user';
@@ -13,6 +13,7 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "../Sagas/index";
 import reviewReg from '../Sagas/reviewReg';
 import party from '../Sagas/party';
+import mypages from "../Sagas/myPage";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -22,6 +23,7 @@ const reducer = combineReducers({
     shop,
     reviewReg,
     party,
+    mypages,
 });
 // const reducer = combineReducers({
 //     users,
