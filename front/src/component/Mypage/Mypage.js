@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
+import { cntReview } from '../../Sagas/myPage';
 
-import { countReview, deleteUser, logout, getUserById } from '../../Sagas/user';
+import {  deleteUser, logout, getUserById } from '../../Sagas/user';
 
 const Mypage = () => {
     const userDetail = useSelector((state) => state.login);
 
+    // const cntReview = useSelector((state)=> state.count);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(countReview());
-    }, []);
+   useEffect( () => {
+       dispatch(cntReview());
+   },[userDetail]);   
 
+    
     const onUserDelete = async (e) => {
         console.log('회원탈퇴');
         dispatch(deleteUser());
@@ -24,6 +28,7 @@ const Mypage = () => {
     const onLogout = async (e) => {
         console.log('logout들어옴');
         dispatch(logout());
+        
         navigate('/login');
     };
 
@@ -62,10 +67,10 @@ const Mypage = () => {
                         </div>
 
                         <div className="flex-auto flex space-x-4">
-                            <button className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black" onClick={onLogout}>
+                            <button className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black" onClick={()=>onLogout}>
                                 로그아웃
                             </button>
-                            <button className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black" onClick={onUserDelete}>
+                            <button className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black" onClick={()=>onUserDelete}>
                                 회원탈퇴
                             </button>
                         </div>
