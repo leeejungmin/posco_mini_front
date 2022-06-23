@@ -34,6 +34,8 @@ const ShopParty = ({ party, partyList }) => {
     };
     const onClickEvent = () => {
         dispatch(partyPost(shopId));
+        console.log('onClickEvent finished----------------------------');
+        window.location.reload();
     };
 
     useEffect(() => {
@@ -117,46 +119,31 @@ const ShopParty = ({ party, partyList }) => {
                                             <thead>
                                                 <tr>
                                                     <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-1 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                        숯부레
-                                                    </th>
-                                                    <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                                         오늘 통닭
                                                     </th>
                                                     <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                        초선과 여포
+                                                        숯부레
                                                     </th>
                                                     <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                                         하나우동
+                                                    </th>
+                                                    <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                        초선과 여포
                                                     </th>
                                                     <th className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                                         한돈애
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            {/*value.shop participate name*/}
-                                            <tbody>
-                                                {/* {aaa?.map((v,idx) =>
-                                                    v.shopId === 1? (
-                                                        setCounts(counts+1)
-                                                    <div> {v.shopId} </div>) : null
-                                                    )} */}
-                                                {/* {partyState.loading?(
 
-                                                            <Spinner>Loading...</Spinner>
-                                                            ):(
-                                                                partysPeople?.map((value, index) =>
-                                                                <th key={index} value={value} className="px-12 bg-mainblack text-white bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-sm uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                                                     {value.shopid === '1' ? <span className="font-medium"> {value.name} </span> : null}
-                                                                </th>
-                                                        )
-                                                        )} */}
+                                            <tbody>
                                                 <tr>
                                                     <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 text-blueGray-700 border border-solid border-blueGray-100">
                                                         {partyList.list?.map((value, index) =>
                                                             value.shopId === 1 ? <tr>{value.name}</tr> : null
                                                         )}
                                                     </td>
-                                                    {/* {value.shopid === 1 ? <span className="font-medium"> {shopParty?.shopParty?data[1].name} </span> : null} */}
+
                                                     <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-sm text-center whitespace-nowrap p-4 border border-solid border-blueGray-100">
                                                         {partyList.list?.map((value, index) =>
                                                             value.shopId === 2 ? <tr>{value.name}</tr> : null
@@ -209,7 +196,7 @@ const ShopParty = ({ party, partyList }) => {
                                                             console.log({
                                                                 date: new Date().toISOString(),
                                                                 shopId: e.target.value,
-                                                                userId: 'd',
+                                                                userId: party,
                                                             });
                                                             setData({
                                                                 date: new Date().toISOString(),
@@ -230,11 +217,11 @@ const ShopParty = ({ party, partyList }) => {
                                             </div>
                                             <div className="flex justify-center">
                                                 <button
+                                                    onClick={onClickEvent}
                                                     type="button"
                                                     data-mdb-ripple="true"
                                                     data-mdb-ripple-color="light"
                                                     className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
-                                                    onClick={onClickEvent}
                                                 >
                                                     참여자 등록
                                                 </button>

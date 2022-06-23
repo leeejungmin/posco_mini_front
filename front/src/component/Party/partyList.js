@@ -14,7 +14,7 @@ const PartyList = () => {
         getPartylist();
     }, []);
 
-    return <>{<Partys party={partys.party} partyList={partys.partyList}></Partys>}</>;
+    return <>{<Partys party={partys.myId} partyList={partys.partyList}></Partys>}</>;
 };
 
 export default PartyList;

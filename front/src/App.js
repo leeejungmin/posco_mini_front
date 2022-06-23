@@ -8,7 +8,7 @@ import Mypage from './component/Mypage/Mypage';
 import ReviewReg from './component/ReviewReg/ReviewReg';
 import ShopDetail from './component/Shop/detail/ShopDetail';
 import ChatRoom from './component/Chat/ChatRoom';
-import PartyList from './component/Party/PartyList';
+import PartyList from './component/Party/partyList';
 
 const App = () => {
     return (
