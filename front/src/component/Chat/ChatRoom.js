@@ -3,38 +3,43 @@ import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
 import { useDispatch, useSelector } from 'react-redux';
 import { countReview, selectUserlist } from '../../Store/user';
+import { customAxiosList } from '../../Http/customAxios';
+import { selectChatList } from '../../Store/chat';
 
 var stompClient = null;
 const ChatRoom = () => {
-    //여기서부터
-    const [privateChats, setPrivateChats] = useState(new Map());
-    const [publicChats, setPublicChats] = useState([]);
+    const [privateChats, setPrivateChats] = useState(new Map()); //사설방
+    const [publicChats, setPublicChats] = useState([]); //공설방
     const [tab, setTab] = useState('CHATROOM');
+    const user = useSelector((state) => state.users); // user 디테일 정보
 
-    const userDetail = useSelector((state) => state.users);
-    console.log('amos(userDetail): ', userDetail);
     const dispatch = useDispatch();
+    const getChatList = () => {
+        dispatch(selectChatList());
+    };
 
     useEffect(() => {
+        // 받아오는 axios 실행
         getUserlist();
+        registerUser();
+    }, []);
+
+    const chatList = useSelector((state) => state.chats.chatList);
+    useEffect(() => {
+        getChatList();
     }, []);
 
     const getUserlist = async (e) => {
-        console.log(userDetail.me.id);
-        dispatch(selectUserlist(userDetail.me.id));
+        dispatch(selectUserlist(user.me.id));
         dispatch(countReview());
     };
 
-    console.log('amos(이름): ', userDetail.me.name);
     const [userData, setUserData] = useState({
-        username: userDetail.me.name,
+        username: user.me.name,
         receivername: '',
         connected: false,
         message: '',
     });
-    useEffect(() => {
-        console.log(userData);
-    }, [userData]);
 
     const connect = () => {
         let Sock = new SockJS('http://localhost:8000/chat/ws');
@@ -45,16 +50,16 @@ const ChatRoom = () => {
     const onConnected = () => {
         setUserData({ ...userData, connected: true });
         stompClient.subscribe('/chatroom/public', onMessageReceived);
-        stompClient.subscribe('/user/' + userDetail.me.name + '/private', onPrivateMessage);
         userJoin();
+        console.log('새로운 내용: ', publicChats);
+        console.log('기존 내용: ', chatList);
     };
 
     const userJoin = () => {
         var chatMessage = {
-            senderName: userDetail.me.name,
+            senderName: user.me.name,
             status: 'JOIN',
         };
-        console.log('amos(userJoin): ', JSON.stringify(chatMessage));
         stompClient.send('/app/message', {}, JSON.stringify(chatMessage));
     };
 
@@ -68,26 +73,11 @@ const ChatRoom = () => {
                 }
                 break;
             case 'MESSAGE':
-                console.log('amos(payloadData): ', payloadData);
                 publicChats.push(payloadData);
                 setPublicChats([...publicChats]);
                 break;
             default:
                 break;
-        }
-    };
-
-    const onPrivateMessage = (payload) => {
-        console.log(payload);
-        var payloadData = JSON.parse(payload.body);
-        if (privateChats.get(payloadData.senderName)) {
-            privateChats.get(payloadData.senderName).push(payloadData);
-            setPrivateChats(new Map(privateChats));
-        } else {
-            let list = [];
-            list.push(payloadData);
-            privateChats.set(payloadData.senderName, list);
-            setPrivateChats(new Map(privateChats));
         }
     };
 
@@ -100,10 +90,9 @@ const ChatRoom = () => {
         setUserData({ ...userData, message: value });
     };
     const sendValue = () => {
-        // 문제 없음 =========================
         if (stompClient) {
             var chatMessage = {
-                senderName: userDetail.me.name,
+                senderName: user.me.name,
                 message: userData.message,
                 status: 'MESSAGE',
             };
@@ -115,25 +104,19 @@ const ChatRoom = () => {
     const sendPrivateValue = () => {
         if (stompClient) {
             var chatMessage = {
-                senderName: userDetail.me.name,
+                senderName: user.me.name,
                 receiverName: tab,
                 message: userData.message,
                 status: 'MESSAGE',
             };
 
-            if (userDetail.me.name !== tab) {
+            if (user.me.name !== tab) {
                 privateChats.get(tab).push(chatMessage);
                 setPrivateChats(new Map(privateChats));
             }
             stompClient.send('/app/private-message', {}, JSON.stringify(chatMessage));
             setUserData({ ...userData, message: '' });
         }
-    };
-
-    const handleUsername = (event) => {
-        // 문제 없음 =========================
-        const { value } = event.target;
-        setUserData({ ...userData, username: value });
     };
 
     const registerUser = () => {
@@ -153,27 +136,23 @@ const ChatRoom = () => {
                             >
                                 Chatroom
                             </li>
-                            {[...privateChats.keys()].map((name, index) => (
-                                <li
-                                    onClick={() => {
-                                        setTab(name);
-                                    }}
-                                    className={`member ${tab === name && 'active'}`}
-                                    key={index}
-                                >
-                                    {name}
-                                </li>
-                            ))}
                         </ul>
                     </div>
                     {tab === 'CHATROOM' && (
                         <div className="chat-content">
                             <ul className="chat-messages">
-                                {publicChats.map((chat, index) => (
-                                    <li className={`message ${chat.senderName === userDetail.me.name && 'self'}`} key={index}>
-                                        {chat.senderName !== userDetail.me.name && <div className="avatar">{chat.senderName}</div>}
+                                {chatList.map((chat, index) => (
+                                    <li className={`message ${chat.senderName === user.me.name && 'self'}`} key={index}>
+                                        {chat.senderName !== user.me.name && <div className="avatar">{chat.senderName}</div>}
                                         <div className="message-data">{chat.message}</div>
-                                        {chat.senderName === userDetail.me.name && <div className="avatar self">{chat.senderName}</div>}
+                                        {chat.senderName === user.me.name && <div className="avatar self">{chat.senderName}</div>}
+                                    </li>
+                                ))}
+                                {publicChats.map((chat, index) => (
+                                    <li className={`message ${chat.senderName === user.me.name && 'self'}`} key={index}>
+                                        {chat.senderName !== user.me.name && <div className="avatar">{chat.senderName}</div>}
+                                        <div className="message-data">{chat.message}</div>
+                                        {chat.senderName === user.me.name && <div className="avatar self">{chat.senderName}</div>}
                                     </li>
                                 ))}
                             </ul>
@@ -196,10 +175,10 @@ const ChatRoom = () => {
                         <div className="chat-content">
                             <ul className="chat-messages">
                                 {[...privateChats.get(tab)].map((chat, index) => (
-                                    <li className={`message ${chat.senderName === userDetail.me.name && 'self'}`} key={index}>
-                                        {chat.senderName !== userDetail.me.name && <div className="avatar">{chat.senderName}</div>}
+                                    <li className={`message ${chat.senderName === user.me.name && 'self'}`} key={index}>
+                                        {chat.senderName !== user.me.name && <div className="avatar">{chat.senderName}</div>}
                                         <div className="message-data">{chat.message}</div>
-                                        {chat.senderName === userDetail.me.name && <div className="avatar self">{chat.senderName}</div>}
+                                        {chat.senderName === user.me.name && <div className="avatar self">{chat.senderName}</div>}
                                     </li>
                                 ))}
                             </ul>
@@ -220,19 +199,7 @@ const ChatRoom = () => {
                     )}
                 </div>
             ) : (
-                <div className="register">
-                    <input
-                        id="user-name"
-                        placeholder={userDetail.me.name}
-                        name="userName"
-                        value={userDetail.me.name}
-                        onChange={handleUsername}
-                        margin="normal"
-                    />
-                    <button type="button" onClick={registerUser}>
-                        참여하기
-                    </button>
-                </div>
+                <div className="register" ready={registerUser}></div>
             )}
         </div>
     );

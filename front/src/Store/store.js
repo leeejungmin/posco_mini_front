@@ -6,6 +6,7 @@ import reviewReg from './reviewReg';
 import details from './shopDetail';
 import mypages from './mypage';
 import partys from './party';
+import chats from './chat';
 const reducer = combineReducers({
     users,
     shops,
@@ -13,6 +14,7 @@ const reducer = combineReducers({
     reviewReg,
     details,
     mypages,
+    chats,
 });
 export default configureStore({
     reducer,
