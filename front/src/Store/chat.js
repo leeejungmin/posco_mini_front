@@ -17,7 +17,6 @@ export const ChatListSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(selectChatList.fulfilled, (state, { payload }) => {
-            console.log('amos(chat payload): ', payload);
             const newChatList = { ...state.chatList };
             newChatList.chatList = payload;
             return { ...state, chatList: payload };

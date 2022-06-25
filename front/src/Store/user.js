@@ -107,11 +107,9 @@ export const usersSlice = createSlice({
                 return { ...state, isLogin: false, me: {}, myId: '' };
             })
             .addCase(selectUserlist.fulfilled, (state, { payload }) => {
-                console.log('mypaga : ' + payload);
                 return { ...state, me: payload };
             })
             .addCase(countReview.fulfilled, (state, { payload }) => {
-                console.log('count review : ' + payload);
                 return { ...state, count: payload };
             });
     },

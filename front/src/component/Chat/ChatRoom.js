@@ -60,7 +60,7 @@ const ChatRoom = () => {
             senderName: user.me.name,
             status: 'JOIN',
         };
-        stompClient.send('/app/message', {}, JSON.stringify(chatMessage));
+        // stompClient.send('/app/message', {}, JSON.stringify(chatMessage));
     };
 
     const onMessageReceived = (payload) => {
