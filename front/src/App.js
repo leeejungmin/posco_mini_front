@@ -9,6 +9,9 @@ import ReviewReg from './component/ReviewReg/ReviewReg';
 import ShopDetail from './component/Shop/detail/ShopDetail';
 import ChatRoom from './component/Chat/ChatRoom';
 import PartyList from './component/Party/partyList';
+import Push from './component/Push/Push';
+import Firebase from './firebase/Firebase';
+
 
 const App = () => {
     return (
@@ -24,6 +27,7 @@ const App = () => {
                     <Route path="mypage" element={<Mypage></Mypage>}></Route>
                     <Route path="reviewReg" element={<ReviewReg></ReviewReg>}></Route>
                     <Route path="chat" element={<ChatRoom></ChatRoom>}></Route>
+                    <Route path="push" element={<Firebase></Firebase>}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>
