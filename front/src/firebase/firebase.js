@@ -4,7 +4,6 @@ import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
-import './modal.css'
 import { ReactNotifications, Store  } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 // Your web app's Firebase configuration
