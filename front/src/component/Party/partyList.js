@@ -1,28 +1,23 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { partyList } from "../../Sagas/party";
-import Partys from "./Party";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectPartyList } from '../../Store/party';
+import Partys from './Party';
 
-export const partyaction =()=>{
-	const partyList = useSelector((state)=>state);
-	const dispatch = useDispatch();
-	const getPartylist = () => {
-		dispatch(partyList());
-		console.log(partyList);
-	};
-	console.log(shopList);
-	
-	useEffect(()=>{
-		getPartylist();
-	},[]);
-
-
+const PartyList = () => {
+    const partys = useSelector((state) => state.partys);
+    const dispatch = useDispatch();
+    const getPartylist = () => {
+        dispatch(selectPartyList());
+    };
+    useEffect(() => {
+        getPartylist();
+    },[partys]);
     return(
         <>
-			<Partys partys={partyList} partyState={partyList}></Partys>								
+			<Partys partys={partys} partyState={partys}></Partys>								
         </>
 
     );
 }
 
-export default partyaction;
+export default PartyList;
