@@ -7,7 +7,7 @@ import { SHOP_DETAIL_SUCCESS, SHOP_SUCCESS,SHOP_REQUEST, SHOP_DETAIL_REQUEST} fr
 function* getShopList(action) {
    
     try {
-        const response = yield call(customAxiosList,'get', '/shop/rate', null);
+        const response = yield call(customAxiosList,'get', '/shoplist/rate', null);
         console.log(response);
         yield put({
             type: SHOP_SUCCESS,
@@ -23,7 +23,7 @@ function* getShopDetail(action) {
     
    
     const id = action.data;
-    const response = yield call(customAxiosList,'post', `/shop/detail/${id}`, null);
+    const response = yield call(customAxiosList,'post', `/shopdetail/detail/${id}`, null);
     console.log("getShopaxios........"+response);
     yield put({
         type: SHOP_DETAIL_SUCCESS,

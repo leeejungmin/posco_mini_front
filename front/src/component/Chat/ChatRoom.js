@@ -36,7 +36,7 @@ const ChatRoom = () => {
     }, [userData]);
 
     const connect = () => {
-        let Sock = new SockJS("http://localhost:8000/chat/ws");
+        let Sock = new SockJS("http://localhost:9004/chat/ws");
         stompClient = over(Sock);
         stompClient.connect({}, onConnected, onError);
     };

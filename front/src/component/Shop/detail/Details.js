@@ -31,7 +31,7 @@ const Details = ({ shop, review }) => {
                                                 <br></br>
                                                 위치: {v.location}
                                                 <br></br>
-                                                평점: {v.grade}</div>
+                                                평점: {v.rate}</div>
                                             </li>
                                         ))}
                                         <br></br>

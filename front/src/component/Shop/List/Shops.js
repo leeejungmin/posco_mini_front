@@ -37,8 +37,8 @@ const Shops = ({ shops, shopState }) => {
                                                 <div className="font-sans-kr text-1xl font-medium ">
                                                     이름: {v.name}
                                                     <br></br>
-                                                    평점: {v.grade.toFixed(2)}
-                                                    {/* <div className="starBox" style={{ width: v.grade }}>
+                                                    평점: {v.rate.toFixed(2)}
+                                                    {/* <div className="starBox" style={{ width: v.rate }}>
                                                         <img
                                                             className="pointOfStar"
                                                             alt="별"
@@ -91,7 +91,7 @@ const Shops = ({ shops, shopState }) => {
 															이름: {v.name}
 															<br></br>
 
-															평점: {v.grade}
+															평점: {v.rate}
 															<br></br>
 
 															위치:{v.location}
