@@ -22,7 +22,7 @@ const AuthRouter = () => {
     };
     const toHome = () => {
         const from =
-            location.pathname === "/login" || location.pathname === "/register" //
+            location.pathname === "/login" || location.pathname === "/register"//   
                 ? location.pathname
                 : "/login";
         navigate(from);

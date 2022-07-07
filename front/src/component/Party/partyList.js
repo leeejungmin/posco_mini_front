@@ -4,13 +4,15 @@ import { partyList } from "../../Sagas/party";
 import Partys from "./Party";
 
 export const partyaction =()=>{
-	const partyList = useSelector((state)=>state);
+	const party_List = useSelector((state)=>state.party.partyUsers);
+
+	console.log("party ..........",party_List);
 	const dispatch = useDispatch();
 	const getPartylist = () => {
 		dispatch(partyList());
 		console.log(partyList);
 	};
-	console.log(shopList);
+	
 	
 	useEffect(()=>{
 		getPartylist();
@@ -19,7 +21,7 @@ export const partyaction =()=>{
 
     return(
         <>
-			<Partys partys={partyList} partyState={partyList}></Partys>								
+			<Partys partys={party_List} partyState={party_List}></Partys>								
         </>
 
     );

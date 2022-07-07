@@ -6,16 +6,28 @@ import { Spinner } from "reactstrap";
 import { partyList } from "../../Sagas/party";
 import { XYPlot, DonutChart, RadialChart, MarkSeries, LineSeries } from "react-vis";
 
-const ShopParty = ({partysPeople, partyState}) => {
+const ShopParty = () => {
+    // console.log(partyState, partys);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [shops, setshop] = useState("");
     const [data, setData] = useState({});
     const [shopId,setshopId] = useState("");
+    const [myData, setMyData] = useState([]);
     const [counts,setCounts] = useState(0);
     const [count, setCount] = useState(0);
     ////////////////
+
+    const shopList = [
+        { id: 1, label: '오통' },
+        { id: 2, label: '숯부레' },
+        { id: 3, label: '하나우동' },
+        { id: 4, label: '초선과 여포' },
+        { id: 5, label: '한돈애' },
+    ];
+
     const shopParty = useSelector((state) => state.party.partyUsers.partyusers);
+    console.log(shopParty);
     const state = useSelector((state) => state.login.myId);
     const statePartyUser = useSelector((state) => state.party.partyUsers.partyusers);
     useEffect(() => {
@@ -25,7 +37,10 @@ const ShopParty = ({partysPeople, partyState}) => {
         //     }
         //     )
         //     console.log('........PartyUserState'+data);
-    }, [state]);
+        setMyData(listForm());
+    }, [shopParty]);
+
+
 
     const onMovePrev = () => {
         navigate("/list");
@@ -56,28 +71,37 @@ const ShopParty = ({partysPeople, partyState}) => {
         
     //     )
     // }
-    const count_angle = () => {aaa.filter(item => item.shopId === 1).map(item => {
-        setCounts(counts => counts +1);
-        console.log(counts);
-        return(
-            <>
-            <div>{item.name}</div>
-            <div>{counts}</div>
-            </>
+    // const count_angle = () => {aaa.filter(item => item.shopId === 1).map(item => {
+    //     setCounts(counts => counts +1);
+    //     console.log(counts);
+    //     return(
+    //         <>
+    //         <div>{item.name}</div>
+    //         <div>{counts}</div>
+    //         </>
             
-        )
+    //     )
         
-    })  }
+    // })  }
 
-    console.log("count_..........."+count_angle);
-     const myData = [
-     { angle: 10, label: '숯부레', opacity: 0.2, style: { fontSize: 10 } },
-     { angle: 6, label: "오늘 통닭" },
-     { angle: 6, label: "초선과 여포" },
-     { angle: 13, label: "ㅤ하나 우동" },
-     { angle: 0, label: "한돈애" },
+    const listForm = () => {
+        const filterList = shopList.map((data,idx) => {
+            const angle = shopParty.filter((pl) => pl.shopId === data.id).length;
+            return {...data, angle};
+        });
+        console.log(filterList);
+        return filterList;
+    }
+
+    // console.log("count_..........."+count_angle);
+    //  const myData = [
+    //  { angle: 5, label: '숯부레', opacity: 0.2, style: { fontSize: 10 } },
+    //  { angle: 6, label: "오늘 통닭" },
+    //  { angle: 6, label: "초선과 여포" },
+    //  { angle: 13, label: "ㅤ하나 우동" },
+    //  { angle: 0, label: "한돈애" },
     
-     ]
+    //  ]
 
     //  function arrCount(arrParam, str, property, data) {
         
@@ -108,7 +132,7 @@ const ShopParty = ({partysPeople, partyState}) => {
                     ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                     ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
                 </p>
-                <count_angle></count_angle>
+                {/* <count_angle></count_angle> */}
                 <DateToday />
                 <p>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
                 <button
