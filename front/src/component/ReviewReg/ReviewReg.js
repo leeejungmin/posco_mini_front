@@ -17,7 +17,7 @@ const ReviewReg = () => {
 
     //***변경할것 ****
     // back 부분 userId -> token으로 변경
-    const {id,location,name} = useSelector((state) => state.shop.shopDetail.shop[0]);
+    const {id,location,name} = useSelector((state) => state.shop.shopDetail.shop);
     // const { res } = useSelector((state) => state.shop.shopDetail);
     // console.log("............");
     console.log(name);
