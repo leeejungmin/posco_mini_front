@@ -29,7 +29,7 @@ const ShopParty = () => {
     const shopParty = useSelector((state) => state.party.partyUsers.partyusers);
     console.log(shopParty);
     const state = useSelector((state) => state.login.myId);
-    const statePartyUser = useSelector((state) => state.party.partyUsers.partyusers);
+    const statePartyUser = useSelector((state) => state.party);
     useEffect(() => {
         //    // console.log('Here Party............'+statePartyUser);
         //     const partyData = statePartyUser.map((party, idx) => {
@@ -38,6 +38,7 @@ const ShopParty = () => {
         //     )
         //     console.log('........PartyUserState'+data);
         setMyData(listForm());
+        // dispatch(partyList(shopId));
     }, [shopParty]);
 
 

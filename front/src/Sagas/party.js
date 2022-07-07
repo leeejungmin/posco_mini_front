@@ -10,6 +10,8 @@ export const initialState = {
 };
 export const PARTY_SUCCESS = "PARTY_SUCCESS";
 export const PARTY_REQUEST = "PARTY_REQUEST";
+export const PARTYLIST_SUCCESS = "PARTYLIST_SUCCESS";
+export const PARTYLIST_REQUEST = "PARTYLIST_REQUEST";
 
 export const partyList = (data) => {
     
@@ -23,6 +25,17 @@ export const partyList = (data) => {
     };
 };
 
+export const partyAllList = (data) => {
+    console.log("reducer/ partyAllList");
+
+    const resultAllList = {...data, userId: localStorage.getItem("id")};
+    return {
+        type: PARTYLIST_REQUEST,
+        data: resultAllList,
+
+    };
+};
+
 export const PartySlice = createSlice({
     name: "PartyPost",
     initialState,
@@ -33,6 +46,10 @@ export const PartySlice = createSlice({
             .addCase(PARTY_SUCCESS, (state, { data }) => {
                 console.log("Party Request slice... state" + state);
                 return {...state, partyUsers : data }
+            })
+            .addCase(PARTYLIST_SUCCESS, (state, {data}) => {
+                console.log("party all list slice ... state " + state);
+                return {...state, partyUsers : data}
             })
 
     },
