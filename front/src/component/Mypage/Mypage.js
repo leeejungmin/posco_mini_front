@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import { cntReview } from '../../Sagas/myPage';
 
-import {  deleteUser, logout, getUserById } from '../../Sagas/user';
+import {  deleteUser, logout, getUserById, countReview } from '../../Sagas/user';
 
 const Mypage = () => {
     const userDetail = useSelector((state) => state.login);
 
-    // const cntReview = useSelector((state)=> state.count);
+    const resCount = useSelector((state)=> state.mypages);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
    useEffect( () => {
        dispatch(cntReview());
+    //    onLogout();
    },[userDetail]);   
 
     
@@ -28,6 +29,8 @@ const Mypage = () => {
     const onLogout = async (e) => {
         console.log('logout들어옴');
         dispatch(logout());
+    //     localStorage.removeItem("id");
+    //   localStorage.removeItem("token");
         
         navigate('/login');
     };
@@ -50,7 +53,7 @@ const Mypage = () => {
 
                         <div className="flex flex-wrap">
                             <h1 className="flex-auto text-lg font-semibold text-slate-900">맛집등록수</h1>
-                            <div className="text-lg font-semibold text-slate-500">{}</div>
+                            <div className="text-lg font-semibold text-slate-500">{resCount.count.data}</div>
                         </div>
 
                         <div className="flex flex-wrap">

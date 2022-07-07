@@ -125,8 +125,9 @@ const loginSlice = createSlice({
       })
       
     .addCase(LOGOUT, (state, { payload }) => {
-      localStorage.removeItem("id");
-      localStorage.removeItem("token");
+      console.log("logout check slice...");
+      
+      localStorage.clear();
       return { ...state, isLogin: false, me: {}, myId: "" };
   })
   },

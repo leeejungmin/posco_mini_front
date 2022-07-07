@@ -15,11 +15,11 @@ const ChatRoom = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-       // getUserlist();
+       getUserlist();
     }, []);
 
     const getUserlist = async (e) => {
-        console.log(userDetail.me.id);
+        // console.log(userDetail.me.id);
         dispatch(selectUserlist(userDetail.me.id));
         dispatch(countReview());
     };
