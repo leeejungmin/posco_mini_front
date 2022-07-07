@@ -284,10 +284,10 @@ const ShopParty = ({partysPeople, partyState}) => {
                                                         defaultValue={"0"}
                                                     >
                                                         <option value={"0"}>식당 선택하기</option>
-                                                        <option value="2">숯부레</option>
-                                                        <option value="1">오늘통닭</option>
-                                                        <option value="4">초선과 여포</option>
-                                                        <option value="3">하나우동</option>
+                                                        <option value="1">숯부레</option>
+                                                        <option value="2">오늘통닭</option>
+                                                        <option value="3">초선과 여포</option>
+                                                        <option value="4">하나우동</option>
                                                         <option value="5">한돈애</option>
                                                     </select>
                                                 </div>

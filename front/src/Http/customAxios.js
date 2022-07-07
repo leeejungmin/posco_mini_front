@@ -1,7 +1,7 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:8000";
-export const IMG_PATH = "http://localhost:8000";
+export const IMG_PATH = "http://localhost:9003";
 export const customAxios = async (method, url, data) => {
     console.log(data);
     const response = await axios({

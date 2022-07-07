@@ -14,7 +14,7 @@ export const PARTY_REQUEST = "PARTY_REQUEST";
 export const partyList = (data) => {
     
     console.log("reducer / partyactino");
-   
+   console.log(localStorage.getItem("id"));
 
     const resultload = {...data,userId: localStorage.getItem("id"), shopId:data};
     return {
