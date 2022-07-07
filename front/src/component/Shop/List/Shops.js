@@ -9,28 +9,30 @@ const Shops = ({ shops, shopState }) => {
         navigate('/party');
     };
     const onMoveDetail = (valueid, e) => {
-
-
         navigate(`/detail/${valueid}`);
     };
-
 
     return (
         <>
             <div className="relative">
-                <button onClick={onMoveNext} type="button" data-mdb-ripple="true" data-mdb-ripple-color="light" className="absolute top-32 right-80 h-35 w-40 inline-block px-6 py-2.5 bg-[#FFBC05] hover:bg-[#fcaf0a] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out">참여하기</button>
-			</div>
+                <button
+                    onClick={onMoveNext}
+                    type="button"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="absolute top-32 right-80 h-35 w-40 inline-block px-6 py-2.5 bg-[#FFBC05] hover:bg-[#fcaf0a] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                >
+                    참여하기
+                </button>
+            </div>
             <div className="relative h-32 w-32 section pt-20 pb-8 md:pt-16 md:pb-0 bg-white">
-
-
                 <div className="absolute top-36 left-96 h-16 w-16">
                     <div className="">
                         <div className="grid grid-cols-3 gap-x-96 gap-y-10 max-w-3xl">
-                            <div className="col-span-full mb-3">
-                                
-                            </div>
+                            <div className="col-span-full mb-3"></div>
 
-                            {shops && shops.map((v, index) => (
+                            {shops &&
+                                shops.map((v, index) => (
                                     <li className=" flex flex-row mb-2" key={index} name={v} onClick={(e) => onMoveDetail(v.id, e)}>
                                         <div className="h-40 select-none rounded-md flex flex-1 items-center p-1 transition duration-500 ease-in-out transform hover:-translate-y-2 rounded-2xl border-2 p-6 mt-3 border-mainYellow hover:shadow-2xl">
                                             <div className="flex-3 pl-4 mr-4">
@@ -59,8 +61,7 @@ const Shops = ({ shops, shopState }) => {
                                             </div>
                                         </div>
                                     </li>
-                                ))
-                            }
+                                ))}
                         </div>
                     </div>
                 </div>

@@ -5,10 +5,7 @@ import { delay, put, fork, all, takeLatest, takeEvery, call } from 'redux-saga/e
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_CHECK, LOGOUT, COUNT_REVIEW, DELETE_USER, SELECT_USERLIST_REQUEST } from './user';
 
 function* Login(action) {
-    console.log('saga....Login');
-
     const result = yield call(customAxios, 'post', `/user/login`, action.data);
-    console.log('this is result .....' + result);
     const user = action.data;
     yield put({
         type: LOGIN_SUCCESS,
@@ -30,7 +27,6 @@ function* logoutApi(userId) {
 }
 
 function* watchLogin() {
-    console.log('saga  watchLogin........');
     yield takeLatest(LOGIN_REQUEST, Login);
     yield takeLatest(LOGOUT, logoutApi);
     yield takeLatest(DELETE_USER, deleteUserApi);

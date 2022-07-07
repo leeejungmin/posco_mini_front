@@ -1,31 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { partyAllList, partyList } from "../../../Sagas/party";
-import { shopRequest } from "../../../Sagas/shop";
-import Shops from "./Shops";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { partyAllList, partyList } from '../../../Sagas/party';
+import { shopRequest } from '../../../Sagas/shop';
+import Shops from './Shops';
 
-const ShopList =()=>{
-	
-	const shopList = useSelector((state)=>state.shop.shopList);
-	const dispatch = useDispatch();
-	const getShoplist = () =>{
-		dispatch(shopRequest());
-		dispatch(partyAllList());
-	};
-	console.log("this is shplsit......"+shopList);
-	
-	useEffect(()=>{
-		getShoplist();
-	},[]);
+const ShopList = () => {
+    const shopList = useSelector((state) => state.shop.shopList);
+    const dispatch = useDispatch();
+    const getShoplist = () => {
+        dispatch(shopRequest());
+        dispatch(partyAllList());
+    };
 
+    useEffect(() => {
+        getShoplist();
+    }, []);
 
-
-    return(
+    return (
         <>
-			<Shops shops={shopList} shopState={shopList}></Shops>								
+            <Shops shops={shopList} shopState={shopList}></Shops>
         </>
-
     );
-}
+};
 
 export default ShopList;
