@@ -19,10 +19,10 @@ const ShopParty = () => {
     ////////////////
 
     const shopList = [
-        { id: 1, label: '오통' },
-        { id: 2, label: '숯부레' },
-        { id: 3, label: '하나우동' },
-        { id: 4, label: '초선과 여포' },
+        { id: 1, label: '숯부레' },
+        { id: 2, label: '오늘 통닭' },
+        { id: 3, label: '초선과 여포' },
+        { id: 4, label: '하나우동' },
         { id: 5, label: '한돈애' },
     ];
 
@@ -310,7 +310,7 @@ const ShopParty = () => {
                                                     >
                                                         <option value={"0"}>식당 선택하기</option>
                                                         <option value="1">숯부레</option>
-                                                        <option value="2">오늘통닭</option>
+                                                        <option value="2">오늘통닥</option>
                                                         <option value="3">초선과 여포</option>
                                                         <option value="4">하나우동</option>
                                                         <option value="5">한돈애</option>
