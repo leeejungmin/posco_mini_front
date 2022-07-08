@@ -3,6 +3,7 @@ import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
 import { useDispatch, useSelector } from 'react-redux';
 import { countReview, selectUserlist } from '../../Store/user';
+import { useNavigate } from 'react-router';
 
 var stompClient = null;
 const ChatRoom = () => {
@@ -13,6 +14,7 @@ const ChatRoom = () => {
 
     const userDetail = useSelector((state) => state.login);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getUserlist();
@@ -138,6 +140,10 @@ const ChatRoom = () => {
     const registerUser = () => {
         connect();
     };
+
+    const onMovePrev = () => {
+        navigate("/list");
+    };
     return (
         <div className="container">
             {userData.connected ? (
@@ -230,8 +236,20 @@ const ChatRoom = () => {
                     />
                     <button type="button" onClick={registerUser}>
                         참여하기
-                    </button>
+                        </button>
+                        
+                        <button
+                                onClick={onMovePrev}
+                                type="button"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                                className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
+                            >
+                                뒤로가기
+                            </button>
+                        
                 </div>
+                    
             )}
         </div>
     );

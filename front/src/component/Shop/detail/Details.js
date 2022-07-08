@@ -8,6 +8,10 @@ const Details = ({ shop, review }) => {
         navigate(`/reviewReg`);
     };
 
+    const onMovePrev = () => {
+        navigate("/list");
+    };
+
     return (
         <>
             <div className="container h-100">
@@ -48,6 +52,15 @@ const Details = ({ shop, review }) => {
                                                 onClick={(e) => onMoveReviewReg(e)}
                                             >
                                                 리뷰 등록
+                                            </button>
+                                            <button
+                                                onClick={onMovePrev}
+                                                type="button"
+                                                data-mdb-ripple="true"
+                                                data-mdb-ripple-color="light"
+                                                className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                                            >
+                                                뒤로가기
                                             </button>
                                         </div>
                                         {review?.map((v, index) => (

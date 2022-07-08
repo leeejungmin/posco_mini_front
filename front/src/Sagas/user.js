@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 export const initialState = {
   users: "",
   myId: localStorage.getItem("id"),
-  isLogin: localStorage.getItem("id") === undefined ? true : false,
+  isLogin: false,
   me: {},
   count:"",
   
@@ -91,7 +91,7 @@ const loginSlice = createSlice({
         localStorage.setItem("token", data.token);
         return {
           ...state,
-          isLogin: data.isLogin, //
+          isLogin: true, //
           me: data.user,
           myId: data.user.id,
       };
@@ -102,7 +102,7 @@ const loginSlice = createSlice({
         localStorage.setItem("token", data.token);
         return {
           ...state,
-          isLogin: data.isLogin, //
+          isLogin: true, //
           me: data.user,
           myId: data.user.id,
       };

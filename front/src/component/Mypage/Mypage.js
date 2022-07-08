@@ -13,6 +13,10 @@ const Mypage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const onMovePrev = () => {
+        navigate("/list");
+    };
+
    useEffect( () => {
        dispatch(cntReview());
     //    onLogout();
@@ -75,6 +79,15 @@ const Mypage = () => {
                             </button>
                             <button className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black" onClick={()=>onUserDelete}>
                                 회원탈퇴
+                            </button>
+                            <button
+                                onClick={onMovePrev}
+                                type="button"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                                className="h-10 px-6 font-semibold rounded-md bg-mainYellow  text-black"
+                            >
+                                뒤로가기
                             </button>
                         </div>
                     </form>
