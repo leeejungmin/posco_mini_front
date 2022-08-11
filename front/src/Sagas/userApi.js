@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {customAxios} from "../Http/customAxios";
+import { customAxios } from "../Http/customAxios";
 import { useDispatch, useSelector } from "react-redux";
 
 export const initialState = {
@@ -8,6 +8,7 @@ export const initialState = {
   logInError: null,
   isLogin: "",
   user: [],
+  graph: [],
   //여기에서 계속 stats -> islogin을 받을 수 있음
 };
 
@@ -16,52 +17,44 @@ export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
 export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
 export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 export const LOG_IN_CHECK = "LOG_IN_CHECK";
+export const GRAPH_REQUEST = "GRAPH_REQUEST";
+export const GRAPH_SUCCESS = "GRAPH_SUCCESS";
 
 export const loginRequestAction = (data) => {
   // 로그인 요청하기
   console.log("reducer / loginRequestAction");
-  console.log(data); //json userid, 123
+  console.log(data);
   return {
     type: LOG_IN_REQUEST,
     data: data,
   };
 };
 
-export const loginCheck = () => {
-  // 로그인 확인하기
-  const tokenc =  localStorage.getItem("token");
- // console.log("reducer / logincheck..............."+tokenc);
-  console.log(tokenc? true : false)
-
-  //return tokenc? true : false
+export const graphAction = (data) => {
+  // 로그인 요청하기
+  console.log("reducer / GRAPH_REQUEST");
+  console.log(data);
   return {
-    type : LOG_IN_CHECK,
-    data : tokenc? true : false,
-  }
+    type: GRAPH_REQUEST,
+    data: data,
+  };
 };
-
-export const getUserById = async (users, id) => {
-  // const findUserById = await users.find((user) => user.id === id);
-  const { data } = await customAxios("get", `/user/${id}`);
-  return data;
-};
-
-// export const loginCheck = createAsyncThunk(LOGIN_CHECK, async (payload, thunkAPI) => {
-//   console.log("This is loginCheck---"+localStorage.getItem("id"));
-//   const { users, myId } = thunkAPI.getState().users;
-//   if (myId) {
-//       const me = await getUserById(users, Number(myId));
-//       return me;
-//   } else if (myId === 0 || myId === "0") {
-//       const me = await getUserById(users, Number(myId));
-//       return me;
-//   }
-//   return;
-// });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     // 로그인 요청
+    case GRAPH_SUCCESS: {
+      console.log("reducer / 그래프 요청");
+      console.log(action);
+      return {
+        ...state,
+        graphLoading: true,
+        graphInDone: false,
+        logInError: null,
+        graph: action,
+      };
+    }
+
     case LOG_IN_REQUEST: {
       console.log("reducer / 로그인 요청");
       console.log(action);
@@ -78,11 +71,7 @@ const reducer = (state = initialState, action) => {
       console.log(action);
       console.log(action.token);
       localStorage.setItem("token", action.token);
-      // 완료된값 user.js 24번째줄에서 리턴받은 값을 여기서 받아오네
-      //데이터를 보냈으니까 action에 data가 같이 있네 ㅎㅎ;;
-      // 성공이 된거니까
-      // isLogin 부분 확인하고 체크하고 user부분 뿌려주고
-        
+
       return {
         ...state,
         logInLoading: false,
