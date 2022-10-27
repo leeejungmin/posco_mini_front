@@ -13,8 +13,11 @@ export const postUser = async (users, user) => {
 };
 
 export const loginApi = async (users, user) => {
+    console.log("this is loginApi"+user);
     const { data } = await customAxios("post", "/user/login", user);
-    console.log(data);
+
+    // localStorage.setItem("token", data.token);
+    console.log("this is loginAPI token............." + data.user);
     //return { isLogin: data.isTrue ? true : false, user: data.user, isTrue: data.isTrue };
     return { isLogin: data.token ? true : false, user: data.user, token: data.token };
 };
@@ -24,7 +27,21 @@ export const logoutApi = async (userId) => {
 };
 export const getUserById = async (users, id) => {
     // const findUserById = await users.find((user) => user.id === id);
-    const { data } = await customAxios("get", `/user/${id}`);
+    const { data } = await customAxios("get", "/user/me");
     return data;
 };
+
+export const deleteUserApi = async () => {
+    const { status } = await customAxios("delete","/user/",null);
+  if (status !== 201) {
+    throw new Error("error");
+  }
+  return status;
+
+};
+
+export const getcountReview  = async () => {
+    const countRes = await customAxios("get", "/review/count");
+    return countRes;
+}
 

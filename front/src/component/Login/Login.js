@@ -1,23 +1,40 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { Form } from "reactstrap";
 // import { Button, Form, } from "reactstrap";
 import { login } from '../../Store/user'
 // import "./Login.css";
+=======
+import { Button, Form,  } from "reactstrap";
+import { loginRequestAction } from "../../Sagas/user";
+>>>>>>> 520356cd1ac59b73aff2f8ac1149eee57b87efff
 
+//import { login, loginCheck } from '../../Store/user'
 
 
 const Login = () => {
 
     const dispatch = useDispatch();
-
-    
     const [isFail, setIsFail] = useState(false);
     const [user, setUser] = useState({
         userId: "",
         password: "",
     });
+    const state = useSelector((state) => state.isLogin);
+    
+    useEffect(() => {
+        if (state) {
+          navigate("/");
+        } else {
+          setIsFail(true);
+          navigate("/login");
+          setTimeout(() => closeAlert(), 500);
+        //   dispatch(loginCheck());
+        }
+      }, [state]);
+
     const onChangeHandler = (e) => {
 
         const { name, value } = e.target;
@@ -30,14 +47,8 @@ const Login = () => {
     }
     const onSubmit = async (e) => {
         e.preventDefault();
-        const { isLogin } = await dispatch(login(user)).unwrap();
-
-        if (isLogin) {
-            navigate("/");
-        } else {
-            setIsFail(true);
-            setTimeout(() => closeAlert(), 3000);
-        }
+        dispatch(loginRequestAction({ user }));
+        //dispatch(login(user));
     };
 
     const closeAlert = () => {
@@ -46,7 +57,6 @@ const Login = () => {
 
     return (
         <>
-
 
             <br></br>
             <br></br>
@@ -67,14 +77,39 @@ const Login = () => {
                                 <h3 className="pt-4 text-2xl text font-sans-kr text-center">오늘은 뭐 먹지!?</h3>
                                 <div className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                                     <Form onSubmit={onSubmit}>
+<<<<<<< HEAD
                                     <div className="mb-4">
                                         <div className="font-sans-kr block mb-2 text-sm font-bold text-gray-700" >
                                             아이디
-                                        </div>
-                                        <input
-                                            className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                            type="text" placeholder="Username" name="userId" onChange={(e) => onChangeHandler(e)}
+=======
+                                        <div className="mb-4">
+                                            <div className="font-sans-kr block mb-2 text-sm font-bold text-gray-700" >
+                                                아이디
+                                            </div>
+                                            <input
+                                                className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                type="text" placeholder="Username" name="userId" onChange={(e) => onChangeHandler(e)}
+                                            />
 
+>>>>>>> 520356cd1ac59b73aff2f8ac1149eee57b87efff
+                                        </div>
+                                        <div className="mb-4">
+                                            <div className="font-sans-kr block mb-2 text-sm font-bold text-gray-700">
+                                                비밀번호
+                                            </div>
+                                            <input
+                                                className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                                type="password" placeholder="비밀번호를 입력해주세요" name="password" onChange={(e) => onChangeHandler(e)}
+
+                                            />
+                                            <p></p>
+                                            <button
+                                                data-mdb-ripple="true"
+                                                data-mdb-ripple-color="light"
+                                                className="inline-block px-2.5 py-2 bg-[#FFBC05] hover:bg-[#fcaf0a] text-center text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                                            >로그인</button>
+
+<<<<<<< HEAD
                                         />
                                         
                                     </div>
@@ -96,17 +131,20 @@ const Login = () => {
                                         >로그인</button>
 
                                     </div>
+=======
+                                        </div>
+>>>>>>> 520356cd1ac59b73aff2f8ac1149eee57b87efff
                                     </Form>
 
                                     <hr className="mb-6 border-t" />
-                                   <p></p>
+                                    <p></p>
                                     <div className="flex justify-center">
-                                       
+
                                         <img className="animate-bounce"
-                                src="/img/pointer.png"></img>
-                                </div>
-                                
-                                <div className="flex justify-center">
+                                            src="/img/pointer.png"></img>
+                                    </div>
+
+                                    <div className="flex justify-center">
                                         <button onClick={MoveRegi}
                                             type="button"
                                             data-mdb-ripple="true"

@@ -11,7 +11,7 @@ const ShopParty = () => {
     const onMovePrev = () => {
         navigate('/list')
     }
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     // shopid db에 넣기
     // const onChangeHandler = async(e) => {
@@ -130,6 +130,7 @@ const ShopParty = () => {
                                             </td>
                                             <td className="border-t-0 px-12 align-middle border-l-0 border-r-0 text-center text-sm whitespace-nowrap p-4 border border-solid border-blueGray-100">
 
+<<<<<<< HEAD
 
                                             </td>
                                         </tr>
@@ -190,6 +191,38 @@ const ShopParty = () => {
             {/* 콤보박스 */}
             < div className="flex justify-center " >
 
+=======
+                <div className="mb-3 xl:w-96">
+                    <select className="form-select form-select-sm
+                                        appearance-none
+                                        block
+                                        w-full
+                                        px-5
+                                        py-1
+                                        text-sm
+                                        font-normal
+                                        text-gray-700
+                                        bg-white bg-clip-padding bg-no-repeat
+                                        border border-solid border-gray-300
+                                        rounded
+                                        transition
+                                        ease-in-out
+                                        m-0
+                                        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label=".form-select-sm example"
+                        onChange={(e) => {
+                            const selectedShop = e.target.value;
+                            setShopState(selectedShop);
+                        }}
+                        defaultValue={"0"}
+                    >
+                        <option value={"0"}>식당 선택하기</option>
+                        <option value="2">숯부레</option>
+                        <option value="1">오늘통닭</option>
+                        <option value="4">초선과 여포</option>
+                        <option value="3">하나우동</option>
+                        <option value="5">한돈애</option>
+                    </select> 
+>>>>>>> 520356cd1ac59b73aff2f8ac1149eee57b87efff
 
 
                 {/* 콤보박스 끝 */}
